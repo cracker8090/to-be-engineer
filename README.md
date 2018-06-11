@@ -1,5 +1,5 @@
 # 技能树 SKILLS
-this is a directory which to plant my notebook how to be engineer.
+this is a directory which to plant my notebook how to be an engineer.
 
 ## 1.[network_learning_skills](https://github.com/cracker8090/to-be-engineer/tree/master/network_security_learning)
 
