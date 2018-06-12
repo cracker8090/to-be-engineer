@@ -247,9 +247,9 @@ fake_unlinkat(int dfd, const char __user * pathname, int flag)
 
 
 
+https://www.w0lfzhang.com/2017/08/25/Linux-Kernel-Rootkit-Learning/
 
-
-
+https://paper.seebug.org/497/
 
 
 
