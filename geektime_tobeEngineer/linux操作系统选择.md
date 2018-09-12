@@ -8,6 +8,49 @@ https://fossbytes.com/best-linux-distros-for-programming-developers/
 
 https://fossbytes.com/secure-linux-distros-privacy-anonymity/
 
+
+
+Tails
+
+Tails做到的其实仅是隐藏你的真实IP，却不能保证你的软件和系统的安全。
+
+如果你希望更安全的隐私保护和0Day保险，请使用Qubes。这款操作系统并不帮你隐藏身份，它的设计理念就是默认你所有的程序都具有潜在威胁。每个程序都会在一个虚拟机中运行，类似于程序沙盘，所以就算一个程序遭到攻击也不会泄漏你所有的信息。只要配置一下Tor做个全局代理就能变成比Tails更加牢固的防御系统了。
+
+和Whonix一样。。。估计不连代理是不能连tor的。我朝网监已经破解了这个系统建议不要用
+
+
+
+- [Tor](https://zh.wikipedia.org/wiki/Tor) 包括： Stream isolation，regular，obfs2，obfs3，obfs4和ScrambleSuit bridges support，[Vidalia](https://zh.wikipedia.org/wiki/Vidalia)图形前端（它的入门教程在“[这里](https://program-think.blogspot.com/2009/09/break-through-gfw-with-tor.html)”，FAQ在“[这里](https://program-think.blogspot.com/2013/11/tor-faq.html)”）
+- [NetworkManager](https://zh.wikipedia.org/wiki/NetworkManager) 用来进行简单的网络配置
+- [Tor Browser](https://zh.wikipedia.org/wiki/Tor) 是一个基于[火狐](https://zh.wikipedia.org/wiki/%E7%81%AB%E7%8B%90)进行改造以保护匿名性的Web浏览器，其含有的Torbutton用来保持匿名和对抗[JavaScript](https://zh.wikipedia.org/wiki/JavaScript)，默认使所有的cookies被欺骗为临时cookies；[HTTPS Everywhere](https://zh.wikipedia.org/wiki/HTTPS_Everywhere) 用来启用针对于大部分网站的[Transport Layer Security](https://zh.wikipedia.org/wiki/Transport_Layer_Security)，并通过[NoScript](https://zh.wikipedia.org/wiki/NoScript)来限制JavaScript，[Adblock Plus](https://zh.wikipedia.org/wiki/Adblock_Plus)用来移除广告
+- [Pidgin](https://zh.wikipedia.org/wiki/Pidgin) 使用[OTR协议](https://zh.wikipedia.org/wiki/Off-the-Record_Messaging)进行端对端加密[即时通讯](https://zh.wikipedia.org/wiki/%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF)
+- [Claws Mail](https://zh.wikipedia.org/wiki/Claws_Mail) 带有[GnuPG](https://zh.wikipedia.org/wiki/GnuPG)支持的电子邮件客户端
+- Icedove ([Thunderbird](https://zh.wikipedia.org/wiki/Mozilla_Thunderbird)) 带有基于[OpenPGP](https://zh.wikipedia.org/wiki/OpenPGP)支持的[Enigmail](https://zh.wikipedia.org/wiki/Enigmail)的电子邮件客户端
+- [Liferea](https://zh.wikipedia.org/wiki/Liferea) [聚合器](https://zh.wikipedia.org/wiki/%E8%81%9A%E5%90%88%E5%99%A8)
+- [Gobby](https://zh.wikipedia.org/w/index.php?title=Gobby&action=edit&redlink=1) 用来进行文本[协同写作](https://zh.wikipedia.org/wiki/%E5%8D%94%E5%90%8C%E5%AF%AB%E4%BD%9C)
+- [Aircrack-NG](https://zh.wikipedia.org/wiki/Aircrack-NG) 用来对[Wi-Fi](https://zh.wikipedia.org/wiki/Wi-Fi)网络进行[信息安全审计](https://zh.wikipedia.org/w/index.php?title=%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8%E5%AE%A1%E8%AE%A1&action=edit&redlink=1)
+- [I2P](https://zh.wikipedia.org/wiki/I2P) 匿名网络（它的入门教程在“[这里](https://program-think.blogspot.com/2012/06/gfw-i2p.html)”）
+- Electrum 易于使用的[bitcoin](https://zh.wikipedia.org/wiki/Bitcoin)客户端
+
+加密和隐私
+
+- [LUKS](https://zh.wikipedia.org/w/index.php?title=LUKS&action=edit&redlink=1)和[GNOME Disks](https://zh.wikipedia.org/w/index.php?title=GNOME_Disks&action=edit&redlink=1) 用来安装和使用加密存储设备，比如[优盘](https://zh.wikipedia.org/wiki/%E5%84%AA%E7%9B%A4)等
+- [GnuPG](https://zh.wikipedia.org/wiki/GnuPG) 用来对电子邮电和数据进行加密和签名的[OpenPGP](https://zh.wikipedia.org/wiki/OpenPGP)的GNU分发版
+- Monkeysign 用来对OpenPGP密钥进行签名和交换
+- PWGen 一个强[随机密码产生器](https://zh.wikipedia.org/w/index.php?title=%E9%9A%8F%E6%9C%BA%E5%AF%86%E7%A0%81%E4%BA%A7%E7%94%9F%E5%99%A8&action=edit&redlink=1)
+- [Shamir's Secret Sharing](https://zh.wikipedia.org/w/index.php?title=Shamir%27s_Secret_Sharing&action=edit&redlink=1) 使用gfshare和ssss
+- Florence[虚拟键盘](https://zh.wikipedia.org/wiki/%E8%99%9A%E6%8B%9F%E9%94%AE%E7%9B%98) 用来针对[键盘监听](https://zh.wikipedia.org/wiki/%E9%94%AE%E7%9B%98%E7%9B%91%E5%90%AC)的一种对策
+- MAT 用来匿名化文件的元数据
+- [KeePassX](https://zh.wikipedia.org/w/index.php?title=KeePassX&action=edit&redlink=1) 密码管理器
+- GtkHash 用来计算校验和
+- Keyringer 用来通过[Git](https://zh.wikipedia.org/wiki/Git)进行秘密共享加密的命令行工具
+- Paperkey 用来将OpenPGP的安全密钥记录在纸上的命令行工具
+- TrueCrypt——跨平台的磁盘加密工具（俺写的系列教程在“[这里](https://program-think.blogspot.com/2011/05/recommend-truecrypt.html)”，共5篇）
+
+
+
+
+
 ## kalilinux
 
 
@@ -101,7 +144,55 @@ https://fossbytes.com/secure-linux-distros-privacy-anonymity/
 5. **界面体验**：为懒人塑造了人性化体验，如关闭窗口只要鼠标点击就行、有“开始”菜单，可以自动平铺窗口等等**（节约无限个工时）**
 6. **稳定性**：开启和操作软件都很快，不会出现资源高耗、卡死、崩溃的bug**（节约无限个工时）**
 
+Manjaro 在桌面环境上有着许多选择，比如 Xfce、KDE、Deepin、BspWM、Budgie、i3、LXDE、Cinnamon、Enlightenment、Netbook、Fluxbox、Gnome、JWM、LXQT、MATE、Openbox 和 PekWM。所有这些桌面环境在 Manjaro 中都十分漂亮。Manjaro 官方的桌面环境是 Xfce 和 KDE，而其他桌面环境则是社区支持的。
 
+Manjaro 则使用 Octopi 来使其变得更加用户友好，Octopi 是一个用 Qt 编写的 pacman 的图形前端。Manjaro 很好的维护了他自己的库，这也是它的一个优势。
+
+
+
+A 64 bit installation of Manjaro running KDE uses about 455MB of memory.
+
+###### Install a basic KDE Plasma environment
+
+```
+sudo pacman -S plasma kio-extras
+```
+
+systemd-analyze命令用于诊断系统启动时间
+
+systemd-analyze blame	#按时间排序，查看服务启动耗费时间
+
+systemd-analyze critical-chain updatedb.service	#查看关联性服务启动耗费时间
+
+sudo systemctl list-unit-files --state=enabled	#查看已经启用的服务
+
+sudo systemctl disable xxxx.service	#关闭服务自启动
+
+sudo systemctl mask xxxx.service	#将服务启动文件重定向到/dev/null，一般用于static类型的服务，该条命令谨慎使用，除非你确认其相关的服务真的都不需要启动
+
+
+
+更换桌面系统
+
+1、安装dde
+
+​	sudo pacman -S deepin deepin-extra
+
+2、修改 /etc/lightdm/lightdm.conf
+
+​	sudo cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
+
+​	sudo sed -i 's/greeter-session=lightdm-.*/greeter-session=lightdm-deepin-greeter/g' /etc/lightdm/lightdm.conf
+
+​	 sudo sed -i 's/user-session=xfce/user-session=deepin/g'  /etc/lightdm/lightdm.conf
+
+3、选择桌面、重启
+
+​	锁定——选择deepin桌面图标（一般在右下角）——重启系统就ok了。
+
+DockBarX XFCE
+
+plank，docky，cairo-dock，tint2，AWN，lattedock，glx-dock
 
 # 选择
 
@@ -306,7 +397,7 @@ net-tools通过procfs(/proc)和ioctl系统调用去访问和改变内核网络�
 
 “电源选项”，“选择电源按钮的功能”，“更改当前不可用的设置”，“快速启动”
 
-​	快速启动是 Windows 8 (及更新的版本) 中的一项功能,通过休眠来提高启动速度.但是如果你休眠 Windows 然后进入另一个系统修改文件,可能会造成数据丢失.即使你不打算在双系统中共享文件,这也容易损坏 EFI 系统分区.因此你应该在安装 Linux 前禁用快速启动
+	快速启动是 Windows 8 (及更新的版本) 中的一项功能,通过休眠来提高启动速度.但是如果你休眠 Windows 然后进入另一个系统修改文件,可能会造成数据丢失.即使你不打算在双系统中共享文件,这也容易损坏 EFI 系统分区.因此你应该在安装 Linux 前禁用快速启动
 
 ### **关闭Security Boot** 
 
@@ -318,7 +409,7 @@ net-tools通过procfs(/proc)和ioctl系统调用去访问和改变内核网络�
 
 1998年，Intel牵头，联合AMD、AMI、Apple、Dell、HP、IBM、Lenovo、Microsoft和Phoenix等业界主要厂商，开始制定新一代BIOS。这个项目叫做"统一的可扩展固定接口"（Unified Extensible Firmware Interface），简称[UEFI](http://en.wikipedia.org/wiki/Unified_Extensible_Firmware_Interface)。2005年推出1.1版。电脑运行的将不是BIOS，而是UEFI BIOS。等它运行结束，再载入操作系统。微软感兴趣的不是整个UEFI，而是UEFI的一个子规格Secure Boot。它要强行部署Secure Boot。
 
-​	Secure Boot的目的，是防止恶意软件侵入。它的做法就是采用密钥。UEFI规定，主板出厂的时候，可以内置一些可靠的公钥。然后，任何想要在这块主板上加载的操作系统或者硬件驱动程序，都必须通过这些公钥的认证。也就是说，这些软件必须用对应的私钥签署过，否则主板拒绝加载。由于恶意软件不可能通过认证，因此就没有办法感染Boot。
+	Secure Boot的目的，是防止恶意软件侵入。它的做法就是采用密钥。UEFI规定，主板出厂的时候，可以内置一些可靠的公钥。然后，任何想要在这块主板上加载的操作系统或者硬件驱动程序，都必须通过这些公钥的认证。也就是说，这些软件必须用对应的私钥签署过，否则主板拒绝加载。由于恶意软件不可能通过认证，因此就没有办法感染Boot。
 
 这个设想是好的。但是，UEFI没规定哪些公钥是可靠的，也没规定谁负责颁发这些公钥，都留给硬件厂商自己决定。现在，微软就是要求，主板厂商内置Windows 8的公钥。费者购买一台预装Windows 8的台式机或笔记本，想要在上面再安装其他操作系统（包括以前版本的Windows）是不可能的，除非关闭Secure Boot，或者其他操作系统能够通过Windows 8公钥的认证。如果选择关闭Secure Root，那么预装的Windows 8将无法使用，需要重新安装。
 
@@ -357,7 +448,7 @@ Secure Boot对移动设备的影响，比PC还要严重。微软的平板电脑S
 
 ### Windows 中的文件名限制
 
-​	Windows 中的文件名长度最长为260字符。这是 Windows 而非 NTFS 的限制,因此其它系统依然可以在 NTFS 文件系统中创建文件名中带有这些符号的文件,但 Windows 无法识别这些文件. 运行 `chkdsk` 时也可能删除它们,这是一个引发数据丢失的风险.
+	Windows 中的文件名长度最长为260字符。这是 Windows 而非 NTFS 的限制,因此其它系统依然可以在 NTFS 文件系统中创建文件名中带有这些符号的文件,但 Windows 无法识别这些文件. 运行 `chkdsk` 时也可能删除它们,这是一个引发数据丢失的风险.
 
 ## 2.安装
 
@@ -367,11 +458,11 @@ Secure Boot对移动设备的影响，比PC还要严重。微软的平板电脑S
 
 #### 使用 Linux 启动管理器
 
-​	你可以使用grub
+	你可以使用grub
 
 #### 使用 Windows 启动管理器
 
-​	需要设置 Windows 启动管理器使它加载另一个启动管理器 (例如 GRUB ),然后启动 Arch Linux.
+	需要设置 Windows 启动管理器使它加载另一个启动管理器 (例如 GRUB ),然后启动 Arch Linux.
 
 
 
@@ -461,15 +552,17 @@ sudo grub-probe --target=fs_uuid /boot/efi/EFI/Microsoft/Boot/bootmgfw.efi
 2. 使用 Linux 某个发行版一段时间之后，难免会想尝试一下另一个发行版。这时请务必将之前的发型版的引导文件删除，否则可能会出现无论怎么设置都无法进入 GRUB 的情况。例如：我之前用的是 Ubuntu，我现在换成了 Manjaro，我就需要用 DG 删除 EFI 分区的 Ubuntu 文件夹。
 3. 在我使用 Manjaro 更新了一次 Linux 的内核后，进不去 Windows 10 了，这个时候千万不要直接修复 Windows 10 引导，这会格式化 EFI 分区，只需要按上面 [修复 Windows 引导](https://itswincer.com/posts/ad42f575/#%E4%BF%AE%E5%A4%8D-Windows-%E5%BC%95%E5%AF%BC) 的方法编辑一下 GRUB 就可以了。
 
-
-
 选择我们建立的efi分区，然后在下面选择保留，标记选择boot和esp，挂载点选择/boot/efi 
 
 分给linuxswap分区8G空间，就是传说中的虚拟存储啦；分给/home 和 / 主分区每个一半的剩余空间。我建议这几个分区先压缩出来，在进行分区安装。
 
 其中linuxswap是在文件系统选的（可能记错？）；/home 和 / 都是挂载点。
 
+### （6）解决方法
 
+1.磁盘a已安装win10，磁盘b分三个区和另一个未分配的空间（166G），这个未分配的用来安装manjaro系统。
+
+2.制作USB启动盘（manjaro），进去之后按正常安装，进到磁盘分区选择时，选择磁盘b，选择166G未分配的块，选择新建分区，ext4，然后挂载不选，确定；再在这个ext4盘上选择新建分区，后面就直接到用户名密码设置了，后面就简单，确认分区后就会安装，重启选择对于HDD盘启动即可。
 
 
 
