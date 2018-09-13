@@ -564,7 +564,11 @@ sudo grub-probe --target=fs_uuid /boot/efi/EFI/Microsoft/Boot/bootmgfw.efi
 
 2.制作USB启动盘（manjaro），进去之后按正常安装，进到磁盘分区选择时，选择磁盘b，选择166G未分配的块，选择新建分区，ext4，然后挂载不选，确定；再在这个ext4盘上选择新建分区，后面就直接到用户名密码设置了，后面就简单，确认分区后就会安装，重启选择对于HDD盘启动即可。
 
+（）文件互相读取
 
+linux可以读取NTFS文件系统
+
+windows不能读取ext4文件，可推荐Ext2Fsd，Ext2Read，Ext2Explore，DiskInternals Linux Reader
 
 
 
