@@ -1,0 +1,28 @@
+
+Windows Defender
+系统自带、搜狗拼音
+Edge浏览器，QQ浏览器，Chrome浏览器
+Edge在周年更新后简直美呆了！增加常用插件：印象笔记·剪藏、Pinterest、Adblock Plus、鼠标手势、保存到Pocket等等
+音乐：Foobar2000、网易云音乐，Foobar2000我只用来听无损，用的是贴吧上强化过得版本，可以自动加载歌词
+视频：暴风影音、优酷视频、Potplayer
+Potplayer是本地视频杀手
+微软商店版必应词典、欧路词典、Qtranslate
+Onedrive、百度云、微云
+微信、QQ轻聊版，应用商店版微博，知乎UWP（这个第三方做得非常棒）、NGA玩家社区（这个在Win10上做得太好了，我一般在里面逛消费者电
+Calibre、Acrobat Reader DC（其实就是Adobe的PDF阅读器）、福昕阅读器、Kindle
+
+效率提升：印象笔记（EverNote）、小书匠（支持Markdown和关联印象笔记、为知笔记、个人博客等，同步非常棒！！）、奇妙清单（Wunderlist）、OneNote 2016、微软桌面版日历、番茄土豆。（结合使用效果更好噢~印象笔记高级会员，真正使用后感觉到了一片新天地，体验了很多同类软件，包括用了4年多的OneNote，现在已经完全离不开印象笔记了，OneNote的同步速度和移动版的功能差异，让我用得很怄火，同步速度简直让我无语，特别是在Ipad里面，我已经把OneNote的笔记全部移动到印象了，现在OneNote可以用来整理文件，也还能使用，但是用得越来越少了已经；奇妙清单很简单，记录每一个要做的任务，然后计划时间，按时提醒，支持#标签，任务支持同步到Outlook日历里面。）
+微软商店应用Zaker。（Zaker跨平台同步非常好用，微软自带的资讯不能收藏，感觉不是很满意
+
+Office 2016（我买的是年费Office365，新版无论是界面还是功能都非常好用，Onedrive1T容量，而且不像WPS那样广告弹窗
+
+ColorCube（这个应用给个赞！设计配色专用，一般用它直接获取图片颜色，然后截图直接截颜色图放进Adobe软件里面
+喜马拉雅听书UWP
+
+壁纸1：链接：http://pan.baidu.com/s/1jGtVpYI 密码：rpii
+壁纸2：链接：http://pan.baidu.com/s/1kV32qoB 密码：pzg0
+Qtranslate：链接：http://pan.baidu.com/s/1c1AROzu 密码：hagi
+Potplayer皮肤：链接：http://pan.baidu.com/s/1mgCijs0 密码：s8uv
+Foobar2000：链接：http://pan.baidu.com/s/1dDPxWVf 密码：gnpy （直接压缩的自己的文件夹，不能用别怪我 >_<.）
+
+http://www.jianshu.com/p/3d6dbb1b9201

@@ -1,0 +1,13 @@
+learning linux kernel source code
+
+https://softwareengineering.stackexchange.com/questions/46610/how-to-understand-linux-kernel-source-code-for-a-beginner
+https://en.wikiversity.org/wiki/Linux/Reading_the_Linux_Kernel_Sources
+https://www.linuxquestions.org/questions/linux-newbie-8/how-to-study-the-linux-source-code-594591/
+https://stackoverflow.com/questions/5097160/how-to-start-learning-linux-kernel-programming-coding-or-reading
+https://www.quora.com/In-what-order-should-I-read-Linux-kernels-source-code
+http://www.tldp.org/LDP/khg/HyperNews/get/tour/tour.html
+https://www.safaribooksonline.com/library/view/understanding-the-linux/0596002130/apc.html
+http://www.linux-tutorial.info/modules.php?name=MContent&pageid=295
+https://zhuohua.me/2017/10/14/Start-Learning-Linux-Kernel/
+
+
