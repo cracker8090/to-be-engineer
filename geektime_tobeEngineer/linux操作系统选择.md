@@ -176,19 +176,19 @@ sudo systemctl mask xxxx.service	#将服务启动文件重定向到/dev/null，�
 
 1、安装dde
 
-​	sudo pacman -S deepin deepin-extra
+	sudo pacman -S deepin deepin-extra
 
 2、修改 /etc/lightdm/lightdm.conf
 
-​	sudo cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
-
-​	sudo sed -i 's/greeter-session=lightdm-.*/greeter-session=lightdm-deepin-greeter/g' /etc/lightdm/lightdm.conf
-
-​	 sudo sed -i 's/user-session=xfce/user-session=deepin/g'  /etc/lightdm/lightdm.conf
+	sudo cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
+	
+	sudo sed -i 's/greeter-session=lightdm-.*/greeter-session=lightdm-deepin-greeter/g' /etc/lightdm/lightdm.conf
+	
+	 sudo sed -i 's/user-session=xfce/user-session=deepin/g'  /etc/lightdm/lightdm.conf
 
 3、选择桌面、重启
 
-​	锁定——选择deepin桌面图标（一般在右下角）——重启系统就ok了。
+	锁定——选择deepin桌面图标（一般在右下角）——重启系统就ok了。
 
 DockBarX XFCE
 
@@ -247,7 +247,7 @@ sudo pacman -Syy && sudo pacman -S archlinuxcn-keyring
 sudo pacman -S fcitx-sogoupinyin
 sudo pacman -S fcitx-im 
 sudo pacman -S fcitx-configtool
-~/.profile 这个文件或者在/etc/environment
+~/.xprofile 这个文件或者在/etc/environment
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS="@im=fcitx"
@@ -255,8 +255,8 @@ export XMODIFIERS="@im=fcitx"
 6.美化 Xfce
 使用了 OSX 风格的主题 OSX-Arc-White下载好主题之后，直接解压到  /usr/share/themes 下，就可以在 xfce 自带的窗口管理配置了
 7.使用yaourt从AUR安装软件
-pacman -S base-devel yaourt
-yaourt -S vim
+sudo pacman -S base-devel yaourt
+sudo yaourt -S vim
 8.pacman基本用法
 # pacman -S package_name1 package_name2 ...     # 安装软件
 # pacman -R package_name                        # 删除软件
@@ -275,7 +275,7 @@ git config --global user.email "注册邮箱"
 11.代理
 shadowsocks
 浏览器switchy
-
+sudo pacman -S shadowsocks-qt5
 ```
 
 
@@ -371,6 +371,24 @@ ifconfig、route、arp和netstat等命令行工具（统称为net-tools）
 net-tools通过procfs(/proc)和ioctl系统调用去访问和改变内核网络配置，而iproute2则通过netlink套接字接口与内核通讯。抛开性能而言，iproute2的用户接口比net-tools显得更加直观。比如，各种网络资源（如link、IP地址、路由和隧道等）均使用合适的对象抽象去定义，使得用户可使用一致的语法去管理不同的对象。更重要的是，到目前为止，iproute2仍处在持续开发中。
 
 21.终端分屏工具tmux
+
+screenfetch展示系统信息
+virtualbox
+xmind
+FSearch文件搜索，ANGRYsearch，CatFish
+filezilla
+remarkable markdown软件
+uget 媲美迅雷的下载工具
+shadowsocks-qt5 翻墙工具，配合浏览器插件SwitchyOmega使用
+pacman -S file-roller unrar unzip p7zip
+openssh
+
+sudo vim /usr/share/applications/netease-cloud-music.desktop
+
+arch下安装deb
+    yaourt -S debtap
+    sudo debtap -u
+    debtap quadrapassel_3.22.0-1.1_arm64.deb
 ```
 
 
@@ -564,15 +582,17 @@ sudo grub-probe --target=fs_uuid /boot/efi/EFI/Microsoft/Boot/bootmgfw.efi
 
 2.制作USB启动盘（manjaro），进去之后按正常安装，进到磁盘分区选择时，选择磁盘b，选择166G未分配的块，选择新建分区，ext4，然后挂载不选，确定；再在这个ext4盘上选择新建分区，后面就直接到用户名密码设置了，后面就简单，确认分区后就会安装，重启选择对于HDD盘启动即可。
 
-（）文件互相读取
+### （7）文件互相读取
 
 linux可以读取NTFS文件系统
 
 windows不能读取ext4文件，可推荐Ext2Fsd，Ext2Read，Ext2Explore，DiskInternals Linux Reader
 
+### （8）git补全
 
 
 
+### （9）zsh使用
 
 
 
