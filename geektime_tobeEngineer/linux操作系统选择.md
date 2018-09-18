@@ -600,17 +600,195 @@ windows不能读取ext4文件，可推荐Ext2Fsd，Ext2Read，Ext2Explore，Disk
 
 
 
+last reboot可以看到Linux系统历史启动的时间
 
 
 
 
 
+浏览器内存占用率高
+
+great suspender 插件，google浏览器高级设置中退出即关闭程序。
+
+firefox
+
+如何关闭plasma隐藏的程序
+
+**一.解决CPU占用率高，打开网页停顿的问题：**
+
+ 工具--选项--内容--启用Java这一项（去掉前面的勾）--确认，重启即可。（当使用firefox火狐浏览器浏览时，可能会造成某些需使用java项无法正常使用等，如有问题重新勾选即可）
+
+
+
+Firefox浏览器，在地址栏中输入about:config，在过滤器中输入browser.cache.memory.enable
 
 
 
 
 
+ps -aux` 和 `ps -lax，pstree 可以以进程树的形式列出当前进程.xkill 是 X 环境的杀进程命令。只要输入 xkill，鼠标轻轻一点，鼠标指向的窗口（对应的进程）就立马被杀死.
 
+**信号** 
+
+Unix 和 Linux 有信号的概念。信号可以控制进程的运行。
+
+如果想手动发送信号，可通过 kill 命令（因此 kill 不完全是一个杀进程的命令）。例如：
+
+- `kill -STOP pid`：发送 SIGSTOP 信号，停止进程但不消灭进程。
+- `kill -CONT pid`：发送 SIGCONT 信号，重新开始已停止的进程。
+- `kill -KILL pid`：发送 SIGKILL 信号，强迫进程停止。这个命令可以用于对付无法正常结束的进程。
+
+
+
+Firefox 的 Fission Memshrink （ [Project Fission](https://careers.mozilla.org/position/gh/1234648) 的一部分）虽然目的也是减少内存使用，但它可能更偏向于是一个清理过程，最终的 Project Fission 将真正提高网页的响应能力。而 Chrome 的 Page Lifecycle 也同样不意味着能即时优化，为了使其发挥最佳效果，Web 开发者需要提供支持，以便浏览器可以更智能地判断页面元素的优先级。
+
+
+
+
+
+qemu kvm，调试内核环境
+
+
+
+c/c++开发环境
+
+
+
+## linux下工具
+
+https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/top.html
+
+播放器
+
+mpv，mplayer，vlc，SMPlayer。可用于二次开发比较好的播放器有MPV、VLC。但首推VLC，因为技术比较成熟，有许多程序员将其作为开发对象，所以[适合做为二次开发](https://juejin.im/post/5b7bd7fde51d4538a423ba8f)。
+
+**mpv快捷键** 
+
+> - 鼠标左键双击: 进入/退出全屏
+>
+>   鼠标右键单击: 暂停/继续播放
+>
+>   p: 暂停/继续播放
+>
+>   m: 静音
+>
+>   方向键: 快进/快退（具体的自己试）
+>
+>   <>: 上一个/下一个（播放列表中）
+>
+>   Enter: 下一个（播放列表中）
+>
+>   q/Q: 停止播出并退出/保存当前播放进度并退出
+>
+> - j 循环选择字幕
+>
+> - J 反向循环选择字幕
+>
+> - [#] 循环切换音轨
+>
+> - f 切换全屏状态
+>
+> - T 切换视频窗口是否总在最前
+>
+> - s 视频截图，包含字幕
+>
+> - S 视频截图，不带字幕
+>
+> - Alt+s 自动逐帧视频截图，再按一次停止截图
+>
+> - . 进到下一帧
+>
+> - , 退到前一帧
+>
+> - 9 音量减 2
+>
+> - 0 音量加 2
+>
+> - [ 0.9091 倍慢速播放
+>
+> - ] 1.1 倍快速播放
+>
+> - { 0.5 倍慢速播放
+>
+> - } 2 倍快速播放
+>
+> - Backspace 重置为正常播放速度
+
+**打开多个文件** 
+
+Linux 和 OS: 选中多个文件，右键选中MPV打开
+
+Linux: 终端执行命令： ~/.config/mpv/（常用配置）
+
+**创建一个mpv.conf文件，这是主配置文件**
+
+```
+#没有边框
+no-border
+#记住断点
+save-position-on-quit
+```
+
+**创建一个input.conf文件，这是自定义快捷键文件**
+
+```
+#向前滚轮音量加5
+AXIS_UP volume 5
+#向后滚轮音量减5
+AXIS_DOWN  volume -5
+```
+
+脚本是mpv配置的重头戏。mpv启动时，保存在配置目录的scripts文件夹里的Lua脚本自动加载且执行。官方wiki里有脚本的[List](https://github.com/mpv-player/mpv/wiki/User-Scripts)，可以自行查阅，寻找自己喜欢的功能脚本。
+
+分享一下我用的几个脚本：
+
+[autoload.lua](https://github.com/mpv-player/mpv/blob/master/TOOLS/lua/autoload.lua)：自动加载当前播放文件目录里的视频文件到播放列表，也就是自动连播，原生mpv不具有这个功能。[mpv_thumbnail_script.lua](https://github.com/TheAMM/mpv_thumbnail_script)：显示预览缩略图
+
+
+
+### shell
+
+echo $SHELL，cat /etc/shells ，echo` `$0
+
+若想要更改系统创建用户时的默认shell，可以使用在 /etc/default/useradd 目录下更改SHELL一行 
+`SHELL=/bin/bash //可以更改此行来达到目的`
+
+
+
+chsh修改当前用户shell，如果你要换成 bash, 请输入 /bin/bash 并回车确认。vi /etc/passwd中修改/bin/bash
+
+切换shell的命令如下：
+
+```
+`chsh -s /bin/zsh`
+```
+
+
+
+### anki
+
+插件
+
+Zooming images 2.0 & 2.1 sans limitation 146%
+
+可以比较方便地控制卡片字体大小而不用调整代码。安装后**按住ctrl键，上下滚动鼠标滚轮**。
+
+**True Retention***推荐指数★★★★★*
+ 在统计中更准确更多样地反映学习情况
+
+
+
+yaourt回退软件版本
+
+pacman -S downgrade
+
+```
+[archlinuxfr]
+SigLevel = Never
+Server = http://repo.archlinux.fr/$arch
+
+sudo pacman -Sy更新仓库
+```
 
 
 
