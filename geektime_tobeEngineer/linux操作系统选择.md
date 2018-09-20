@@ -1,6 +1,6 @@
-
-
 # linux系统推荐
+
+[TOC]
 
 Which Linux distros are suitable for developers
 
@@ -8,9 +8,19 @@ https://fossbytes.com/best-linux-distros-for-programming-developers/
 
 https://fossbytes.com/secure-linux-distros-privacy-anonymity/
 
+# 系统选择
 
+distrowatch操作系统评论网站
 
-Tails
+https://distrowatch.com/
+
+**1.桌面选择**：默认桌面选择xfce4、lxde、mate甚至仿制windows界面都是不错的。
+
+**2.易安装性**：拿archlinux为反面典型，虽然其性能高可以节省工作时间，但是如果安装它都要从头开始学习ABC，那价值就大打折扣。就安装系统的便捷性来说，archlinux、gentoo、lfs这样的系统真没必要尝试。
+
+**3.软件包**：centos、slackware这些软件奇缺或者需要非常复杂的途径才能找到安装源的系统就没必要尝试了。ubuntu系软件比较丰富，但QQ/TIM这样的基本软件还需要折腾一番，还未必能稳定使用。[archlinux系软件包异常丰富](https://www.lulinux.com/archives/2787)，无情碾压deb和rpm系诸多发行版，例如manjaro下可以一条命令安装好无比稳定、功能全面的deepinwine-tim或deepinwine-qq。
+
+## Tails
 
 Tails做到的其实仅是隐藏你的真实IP，却不能保证你的软件和系统的安全。
 
@@ -49,15 +59,7 @@ Tails做到的其实仅是隐藏你的真实IP，却不能保证你的软件和�
 
 
 
-
-
 ## kalilinux
-
-
-
-
-
-
 
 
 
@@ -70,10 +72,6 @@ Tails做到的其实仅是隐藏你的真实IP，却不能保证你的软件和�
 ## Ubuntu
 
 得益于 Canonical 和开源社区的支持,Debian 衍生物在云和服务器应用程序中被大量使用。它也有多种风格来满足人们的不同需求。LTS 版本提供了良好的体验，可以快速解决问题。 Ubuntu 也支持流行的 .deb 包管理系统。
-
-
-
-
 
 
 
@@ -95,9 +93,7 @@ Tails做到的其实仅是隐藏你的真实IP，却不能保证你的软件和�
 
 
 
-## archlinux Manjaro
-
-### archlinux
+## archlinux
 
 	Arch Linux 是高度可定制的。Arch Linux 是硬核 Linux 爱好者最喜爱的 Linux 发行版，它随附有 Linux 内核和软件包管理器。如果需要做一些渗透测试工作，可以将 Arch Linux 安装转换成 BlackArch 安装。
 	
@@ -129,92 +125,21 @@ Tails做到的其实仅是隐藏你的真实IP，却不能保证你的软件和�
 # umount -R /mnt
 ```
 
-### Manjaro
+## Manjaro
 
-	[manjaro介绍](https://www.manjaro.cn/) 如果您知道如何设置 Arch Linux 系统，则不需要 Manjaro Linux。但是，如果你想要一个基于 Arch 的系统，而不需要考虑更新，你可以试试 Manjaro。安装非常简单，就像 Ubuntu 或 Linux Mint 一样。
+	如果你想要一个基于 Arch 的系统，而不需要考虑更新，你可以试试 Manjaro。安装非常简单，就像 Ubuntu 或 Linux Mint 一样。
 
 [DistroWatch排名及信息更新](https://distrowatch.com/table.php?distribution=manjaro) 
 
 **《[一张列表展示ArchLinux系软件有多丰富——看哭百万Debian、RedHat系同学](https://www.lulinux.com/archives/2787)》** ,[欢迎使用manjaro](https://www.manjaro.cn/) 
 
-1. **安装系统**：有图形化界面，一路点击下一步即可（**节约8到无限个工时**【以archlinux或gentoo为负面参照物】）
-2. **硬件驱动**：安装之后，不会出现硬件没响应的问题，比如说连网都上不了、X桌面无法进入**（节约1到无限个工时）**
-3. **基础使用**：安装之后马上就可以干最基本的工作，如打开ntfs分区、听mp3、看flash视频等**（节约1到无限个工时）**
-4. **高级使用**：想要的软件都能通过软件中心找到，QQ有，网易云音乐有，teamviewer有，skype有，wps有，sublime有，phpstorm有……**（节约无限个工时）**
-5. **界面体验**：为懒人塑造了人性化体验，如关闭窗口只要鼠标点击就行、有“开始”菜单，可以自动平铺窗口等等**（节约无限个工时）**
-6. **稳定性**：开启和操作软件都很快，不会出现资源高耗、卡死、崩溃的bug**（节约无限个工时）**
-
-Manjaro 在桌面环境上有着许多选择，比如 Xfce、KDE、Deepin、BspWM、Budgie、i3、LXDE、Cinnamon、Enlightenment、Netbook、Fluxbox、Gnome、JWM、LXQT、MATE、Openbox 和 PekWM。所有这些桌面环境在 Manjaro 中都十分漂亮。Manjaro 官方的桌面环境是 Xfce 和 KDE，而其他桌面环境则是社区支持的。
-
-Manjaro 则使用 Octopi 来使其变得更加用户友好，Octopi 是一个用 Qt 编写的 pacman 的图形前端。Manjaro 很好的维护了他自己的库，这也是它的一个优势。
-
-
-
-A 64 bit installation of Manjaro running KDE uses about 455MB of memory.
-
-###### Install a basic KDE Plasma environment
-
-```
-sudo pacman -S plasma kio-extras
-```
-
-systemd-analyze命令用于诊断系统启动时间
-
-systemd-analyze blame	#按时间排序，查看服务启动耗费时间
-
-systemd-analyze critical-chain updatedb.service	#查看关联性服务启动耗费时间
-
-sudo systemctl list-unit-files --state=enabled	#查看已经启用的服务
-
-sudo systemctl disable xxxx.service	#关闭服务自启动
-
-sudo systemctl mask xxxx.service	#将服务启动文件重定向到/dev/null，一般用于static类型的服务，该条命令谨慎使用，除非你确认其相关的服务真的都不需要启动
-
-
-
-更换桌面系统
-
-1、安装dde
-
-	sudo pacman -S deepin deepin-extra
-
-2、修改 /etc/lightdm/lightdm.conf
-
-	sudo cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
-	
-	sudo sed -i 's/greeter-session=lightdm-.*/greeter-session=lightdm-deepin-greeter/g' /etc/lightdm/lightdm.conf
-	
-	 sudo sed -i 's/user-session=xfce/user-session=deepin/g'  /etc/lightdm/lightdm.conf
-
-3、选择桌面、重启
-
-	锁定——选择deepin桌面图标（一般在右下角）——重启系统就ok了。
-
-DockBarX XFCE
-
-plank，docky，cairo-dock，tint2，AWN，lattedock，glx-dock
-
-# 选择
-
-## 桌面
-
-默认桌面选择xfce4、lxde、mate甚至仿制windows界面都是不错的。
-
-## 易安装性
-
-拿archlinux为反面典型，虽然其性能高可以节省工作时间，但是如果安装它都要从头开始学习ABC，那价值就大打折扣。就安装系统的便捷性来说，archlinux、gentoo、lfs这样的系统真没必要尝试。
-
-## 软件包
-
-centos、slackware这些软件奇缺或者需要非常复杂的途径才能找到安装源的系统就没必要尝试了。ubuntu系软件比较丰富，但QQ/TIM这样的基本软件还需要折腾一番，还未必能稳定使用。[archlinux系软件包异常丰富](https://www.lulinux.com/archives/2787)，无情碾压deb和rpm系诸多发行版，例如manjaro下可以一条命令安装好无比稳定、功能全面的deepinwine-tim或deepinwine-qq。
 
 
 
 
 
-# distrowatch操作系统评论网站
 
-https://distrowatch.com/
+
 
 
 
@@ -263,22 +188,7 @@ sudo yaourt -S vim
 # pacman -Syu                                   # 更新软件和系统
 $ pacman -Ss string1 string2 ...                # 搜索
 sudo pacman -Syyu //更新系统软件包
-9.安装软件
-$ sudo pacman -S vim                    # 安装vim编辑器
-$ sudo pacman -S netease-cloud-music    # 安装网易云音乐，需archlinuxcn源
-$ sudo pacman -S google-chrome          # 安装Chrome，需archlinuxcn源
-$ sudo pacman -S visual-studio-code-bin # 安装VSCode，需archlinuxcn源
-10.git
-sudo pacman -S git
-git config --global user.name "github昵称" 
-git config --global user.email "注册邮箱" 
-11.代理
-shadowsocks
-浏览器switchy
-sudo pacman -S shadowsocks-qt5
 ```
-
-
 
 使用全局菜单。包括 GTK，QT 的程序以及像 Firefox 这个菜单非基于 GTK/QT 的，都已经成功实现了全局菜单了
 
@@ -286,34 +196,10 @@ sudo pacman -S shadowsocks-qt5
 
 系统功能齐全，工作正常，包括蓝牙，MTP 等
 
-Shadowsocks / Redsocks / Iptables / PcapDNSProxy
-
 ```bash
-1.Shadowsocks / Redsocks / Iptables / PcapDNSProxy
-yaourt -S shadowsocks redsocks-git pcap-dnsproxy-git
-实现网络层（TCP）的代理，国内流量（中国 IP 地址白名单）不走代理直接请求，其余流量通过 Iptables 转发给 redsocks 并进一步转发给 shadowsocks。Pcap-DNSProxy 则是用来解决 DNS 污染的。
-后面两个带 -git 的其实是 AUR 的包，如果下载缓慢或者由于网络问题经常出错，可以先安装 proxychains-ng 用代理去下载安装。
-
-2.dropbox
-yaourt -S dropbox
-KDE 可以用 kio-gdrive，但是我 KDE 的 Google 帐号一直没法登上去。
-
-3.zsh / oh-my-zsh   终端就这一套了
-yaourt -S zsh oh-my-zsh-git
-
 4.wqy-microhei / wqy-zenhei
 yaourt -S wqy-microhei wqy-zenhei
 Manjaro 字体已经处理的不错了，但是还是装多这两个字体吧
-
-5.studio-3t / dbeaver / medis
-yaourt -S studio-3t dbeaver medis
-分别是 MongoDB，MySQL 等关系型数据库，Redis 的管理 GUI。Medis 是基于 Electron 构建的，我之前一直用的是 fastonsql，但是 Manjaro 搜不到该包好像。
-
-6.typora
-yaourt -S typora
-
-7.wireshark-qt / telegram-desktop / netease-cloud-music / firefox / chromium / vscode / virtualbox / wiznote
-yaourt -S wireshark-qt telegram-desktop netease-cloud-music firefox chromium visual-stuido-code-bin virtualbox wiznote
 
 8.enpass
 yaourt -S enpass
@@ -323,17 +209,9 @@ yaourt -S enpass
 yaourt -S deepin-wechat deepin-wine-tim deepin-wine-thunderspeed
 这三个就屌了，在 Linux 运行 Windows 版本的微信，TIM 以及迅雷。都比较完美了
 
-10.docker / docker-compose / kitematic
-yaourt -S docker docker-compose kitematic
-本地使用 MySQL，Redis 之类的我一般都不直接装，而是通过 Docker。Kitematic 是 Docker 应用管理，界面不错，也挺好用的。
-
 11.mailspring / nylas
 yaourt -S mailspring
 邮件管理器。界面很美观，功能也强大。
-
-12.gitkraken
-yaourt -S gitkraken
-管理 Git 的，类似 SourceTree。基于 Electron。
 
 13.aria2-fast
 yaourt -S aria2-fast
@@ -342,10 +220,6 @@ yaourt -S aria2-fast
 14.deluge / uget
 yaourt -S deluge uget
 前者是下 BT 的，后者常规下载（支持 Aria2）。我其实现在都没装，我都用 Aria2，Firefox 装一个 Aria2 的插件来下载。然后 ED2K 就用 WIne 迅雷。
-
-15.kio-gdrive
-yaourt -S kio-gdrive
-让 dolphin 支持 Google Drive，经测试 manjaro stable 版本添加帐号报错了，testing 反倒没问题。
 
 16.eepin-screenshot
 yaourt -S deepin-screenshot
@@ -359,11 +233,6 @@ yaourt -S latte-dock
 yaourt -S redshift
 对自己眼睛好一点，我安装了一个 KDE 插件叫 Redshift-Control，他依赖这个，没装的话运行不了。作用就是调节色温了，晚上屏幕暖一点，不那么刺眼。
 
-19.ssh
-pacman -Syy openssh
-systemctl start sshd
-systemctl enable sshd.service
-
 20.ifconfig，ip
 pacman -S net-tools
 pacman -S net-tools dnsutils inetutils iproute2
@@ -373,13 +242,10 @@ net-tools通过procfs(/proc)和ioctl系统调用去访问和改变内核网络�
 21.终端分屏工具tmux
 
 screenfetch展示系统信息
-virtualbox
 xmind
-FSearch文件搜索，ANGRYsearch，CatFish
-filezilla
-remarkable markdown软件
+
+
 uget 媲美迅雷的下载工具
-shadowsocks-qt5 翻墙工具，配合浏览器插件SwitchyOmega使用
 pacman -S file-roller unrar unzip p7zip
 openssh
 
@@ -393,13 +259,7 @@ arch下安装deb
 
 
 
-
-
 ## 2.配置
-
-[FSearch——适用于Linux的快速独立搜索工具](https://www.sysgeek.cn/fsearch/) 
-
-
 
 [TCP Optimizer](https://www.speedguide.net/downloads.php) 是一款绿色小工具，它可以帮助新手或高级用户调整 Windows 系统中相关的 TCP/IP 参数，从而可以轻松地将系统调整为适用所使用的 Internet 连接类型。
 
@@ -471,6 +331,69 @@ Secure Boot对移动设备的影响，比PC还要严重。微软的平板电脑S
 ## 2.安装
 
 推荐先安装 Windows 再安装 Linux , 安装 Windows 时只使用硬盘的部分空间建立需要的分区.在 Windows 安装完毕后,进入 Linux 安装环境中后你可以对硬盘未分配的空间进行分区而不改动 Windows 分区. 对于 UEFI 系统,可以使用 Windows 安装时建立的 EFI 系统分区.
+
+1. **安装系统**：有图形化界面，一路点击下一步即可（**节约8到无限个工时**【以archlinux或gentoo为负面参照物】）
+2. **硬件驱动**：安装之后，不会出现硬件没响应的问题，比如说连网都上不了、X桌面无法进入**（节约1到无限个工时）**
+3. **基础使用**：安装之后马上就可以干最基本的工作，如打开ntfs分区、听mp3、看flash视频等**（节约1到无限个工时）**
+4. **高级使用**：想要的软件都能通过软件中心找到，QQ有，网易云音乐有，teamviewer有，skype有，wps有，sublime有，phpstorm有……**（节约无限个工时）**
+5. **界面体验**：为懒人塑造了人性化体验，如关闭窗口只要鼠标点击就行、有“开始”菜单，可以自动平铺窗口等等**（节约无限个工时）**
+6. **稳定性**：开启和操作软件都很快，不会出现资源高耗、卡死、崩溃的bug**（节约无限个工时）**
+
+Manjaro 在桌面环境上有着许多选择，比如 Xfce、KDE、Deepin、BspWM、Budgie、i3、LXDE、Cinnamon、Enlightenment、Netbook、Fluxbox、Gnome、JWM、LXQT、MATE、Openbox 和 PekWM。所有这些桌面环境在 Manjaro 中都十分漂亮。Manjaro 官方的桌面环境是 Xfce 和 KDE，而其他桌面环境则是社区支持的。
+
+Manjaro 则使用 Octopi 来使其变得更加用户友好，Octopi 是一个用 Qt 编写的 pacman 的图形前端。Manjaro 很好的维护了他自己的库，这也是它的一个优势。
+
+
+
+A 64 bit installation of Manjaro running KDE uses about 455MB of memory.
+
+Install a basic KDE Plasma environment
+
+```
+sudo pacman -S plasma kio-extras
+```
+
+systemd-analyze命令用于诊断系统启动时间
+
+systemd-analyze blame	#按时间排序，查看服务启动耗费时间
+
+systemd-analyze critical-chain updatedb.service	#查看关联性服务启动耗费时间
+
+sudo systemctl list-unit-files --state=enabled	#查看已经启用的服务
+
+sudo systemctl disable xxxx.service	#关闭服务自启动
+
+sudo systemctl mask xxxx.service	#将服务启动文件重定向到/dev/null，一般用于static类型的服务，该条命令谨慎使用，除非你确认其相关的服务真的都不需要启动
+
+
+
+更换桌面系统
+
+1、安装dde
+
+```
+sudo pacman -S deepin deepin-extra
+```
+
+2、修改 /etc/lightdm/lightdm.conf
+
+```
+sudo cp /etc/lightdm/lightdm.conf /etc/lightdm/lightdm.conf.bak
+
+sudo sed -i 's/greeter-session=lightdm-.*/greeter-session=lightdm-deepin-greeter/g' /etc/lightdm/lightdm.conf
+
+ sudo sed -i 's/user-session=xfce/user-session=deepin/g'  /etc/lightdm/lightdm.conf
+```
+
+3、选择桌面、重启
+
+```
+锁定——选择deepin桌面图标（一般在右下角）——重启系统就ok了。
+```
+
+DockBarX XFCE
+
+plank，docky，cairo-dock，tint2，AWN，lattedock，glx-dock
 
 ### （1）bios系统
 
@@ -658,7 +581,11 @@ c/c++开发环境
 
 https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/top.html
 
-播放器
+https://briteming.blogspot.com/2017/04/awesome-linux.html
+
+netease-cloud-music / firefox / chromium/telegram-desktop/google-chrome
+
+### 播放器
 
 mpv，mplayer，vlc，SMPlayer。可用于二次开发比较好的播放器有MPV、VLC。但首推VLC，因为技术比较成熟，有许多程序员将其作为开发对象，所以[适合做为二次开发](https://juejin.im/post/5b7bd7fde51d4538a423ba8f)。
 
@@ -753,7 +680,8 @@ echo $SHELL，cat /etc/shells ，echo` `$0
 若想要更改系统创建用户时的默认shell，可以使用在 /etc/default/useradd 目录下更改SHELL一行 
 `SHELL=/bin/bash //可以更改此行来达到目的`
 
-
+zsh / oh-my-zsh   终端就这一套了
+yaourt -S zsh oh-my-zsh-git
 
 chsh修改当前用户shell，如果你要换成 bash, 请输入 /bin/bash 并回车确认。vi /etc/passwd中修改/bin/bash
 
@@ -761,9 +689,147 @@ chsh修改当前用户shell，如果你要换成 bash, 请输入 /bin/bash 并�
 
 ```
 `chsh -s /bin/zsh`
+安装oh-my-zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+使用了默认的主题（robbyrussell）
+切换主题
+vi ~/.zshrc
+ZSH_THEME="agnoster"
+source ~/.zshrc
 ```
 
+vim NERDTree zsh(steeef theme) + tmux
 
+https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+
+
+
+### 代理
+
+shadowsocks：sudo pacman -S shadowsocks-qt5
+浏览器switchy
+
+1.Shadowsocks / Redsocks / Iptables / PcapDNSProxy
+yaourt -S shadowsocks redsocks-git pcap-dnsproxy-git
+实现网络层（TCP）的代理，国内流量（中国 IP 地址白名单）不走代理直接请求，其余流量通过 Iptables 转发给 redsocks 并进一步转发给 shadowsocks。Pcap-DNSProxy 则是用来解决 DNS 污染的。
+后面两个带 -git 的其实是 AUR 的包，如果下载缓慢或者由于网络问题经常出错，可以先安装 proxychains-ng 用代理去下载安装。
+
+```
+`vim /etc/proxychains.conf`
+```
+
+curl ip.gs ；proxychains4 curl ip.cn;curl ip.cn
+
+archlinuxcn/besttrace 1.2-2
+    IPIP.net 开发的加强版 traceroute，附带链路可视化
+
+### 邮件
+
+Thunderbird
+
+1.  使用户能够拥有个性化的电子邮件地址 
+
+2.  一个单击通讯录 
+
+3.  附件提醒 
+
+4.  多频道聊天 
+
+5.  标签和搜索 
+
+6.  启用搜索网络 
+
+7.  快速过滤器工具栏 
+
+8.  消息存档 
+
+9.  活动经理 
+
+10.  大文件管理 
+
+11.  安全功能，如网络钓鱼保护，无跟踪 
+
+12.  自动更新等等
+
+
+### 云盘
+
+yaourt -S dropbox
+
+kfilebox
+
+KDE 可以用 kio-gdrive，但是我 KDE 的 Google 帐号一直没法登上去。
+
+yaourt -S kio-gdrive
+让 dolphin 支持 Google Drive，经测试 manjaro stable 版本添加帐号报错了，testing 反倒没问题。
+
+proxychains dropbox start -i &
+
+**nutstore**（坚果云，速度很快，按流量限制，用来存储文件挺好的）。
+
+**mega**（mega.nz，国外的网盘，免费容量50g，速度还可以）。
+
+用 Wuala 吧，据说是客户端本地加密，而且客户端也比 SpiderOak （安全性更好）好用。
+
+Resilio Sync（速度快） , Dropbox, google drive
+
+自己撘 seafile ，全平台同步，很爽的
+
+**BitTorrent Sync** ，Syncthing是一种开源服务，可以替代BitTorrent Sync
+
+### 笔记及markdown
+
+yaourt -S typora
+
+remarkable
+
+wiznote
+
+**nixnote**（evernote的第三方客户端，且不会占用免费用户的同步设备数量）。wine evernote
+
+**calibre**（电子书的制作编辑管理格式转换等额等，我一般配合kindle用）
+
+leanote
+
+KindleNote
+
+emacs+orgmode
+
+zim wiki + dropbox
+
+geeknote
+
+linux下安装第三方evernote客户端everpad，并与中国版印象笔记进行同步的方法
+
+
+
+### 文件搜索
+
+[FSearch——适用于Linux的快速独立搜索工具](https://www.sysgeek.cn/fsearch/) 
+
+angrysearch
+
+FSearch文件搜索，ANGRYsearch，CatFish
+
+### 专业软件
+
+wireshark-qt ，vim，visual-studio-code-bin ，git，virtualbox，filezilla，gitkraken（类似 SourceTree。基于 Electron）
+
+git config --global user.name "github昵称" 
+git config --global user.email "注册邮箱" 
+
+**ssh** 
+pacman -Syy openssh
+systemctl start sshd
+systemctl enable sshd.service
+
+
+10.docker / docker-compose / kitematic
+yaourt -S docker docker-compose kitematic
+本地使用 MySQL，Redis 之类的我一般都不直接装，而是通过 Docker。Kitematic 是 Docker 应用管理，界面不错，也挺好用的。
+5.studio-3t / dbeaver / medis
+yaourt -S studio-3t dbeaver medis
+分别是 MongoDB，MySQL 等关系型数据库，Redis 的管理 GUI。Medis 是基于 Electron 构建的，我之前一直用的是 fastonsql，但是 Manjaro 搜不到该包好像。
 
 ### anki
 
@@ -775,6 +841,14 @@ Zooming images 2.0 & 2.1 sans limitation 146%
 
 **True Retention***推荐指数★★★★★*
  在统计中更准确更多样地反映学习情况
+
+
+
+### git使用
+
+通过将Git配置变量 core.quotepath 设置为false，就可以解决中文文件名称在这些Git命令输出中的显示问题，
+
+​	$ git config --global core.quotepath false
 
 
 
@@ -793,6 +867,8 @@ sudo pacman -Sy更新仓库
 
 
 
+
+geany
 
 
 
