@@ -188,6 +188,15 @@ sudo yaourt -S vim
 # pacman -Syu                                   # 更新软件和系统
 $ pacman -Ss string1 string2 ...                # 搜索
 sudo pacman -Syyu //更新系统软件包
+
+yaourt回退软件版本
+
+pacman -S downgrade
+[archlinuxfr]
+SigLevel = Never
+Server = http://repo.archlinux.fr/$arch
+
+sudo pacman -Sy更新仓库
 ```
 
 使用全局菜单。包括 GTK，QT 的程序以及像 Firefox 这个菜单非基于 GTK/QT 的，都已经成功实现了全局菜单了
@@ -848,27 +857,69 @@ Zooming images 2.0 & 2.1 sans limitation 146%
 
 通过将Git配置变量 core.quotepath 设置为false，就可以解决中文文件名称在这些Git命令输出中的显示问题，
 
-​	$ git config --global core.quotepath false
+	$ git config --global core.quotepath false
 
 
 
-yaourt回退软件版本
-
-pacman -S downgrade
-
-```
-[archlinuxfr]
-SigLevel = Never
-Server = http://repo.archlinux.fr/$arch
-
-sudo pacman -Sy更新仓库
-```
+Visual Studio Code，Eclipse – Egit，TortoiseGit，SourceTree是老牌的Git GUI管理工具，GitHub for Desktop，gitkraken
 
 
 
+### geany
 
 
-geany
+
+### soho
+
+方便监管。工业革命的产物，目的是让老板可控——信任
+
+\- 协作互助。过去我们不谈「虚」的，要协作就要面对面，现在可以谈点「虚」的，我给你开发个软件，可以全程不见你——协作平台Phabricator——分解任务，Wiki共享，看板，这些功能让各个项目、项目中的细节和状态都一目了然。
+
+\- 随时沟通。你就在那，离我不到1米的工位上，想找你我就喂一声，你自然就回去看了看我，于是就聊了10块的。——「平时日常沟通Bearychat」、「远程视频会议桌面共享软件ZOOM」、「紧急和重要情况下的Phone」
+
+
+
+做和程序猿当前技能有关的SOHO工作。
+（1）可以去国内外的知名外包网站接单，建议都去国外网站接单，比如elance,freelancer,guru。国内的taskcity和csto可以看看，猪八戒对于程序猿不是个好去处。
+物以稀为贵，现在大家都蜂拥而上做手游，做app，其实可以去看一下elance这些网站的需求，虽然app开发需求多，但去抢单的更多，反倒是体感游戏开发或者其它目前大家关注较少但是也有需求的技能很吃香。
+（2）针对海外市场做独立游戏开发，这个需要强大的个人技能（开发，策划，美术，市场）。不一定自己一个人做，可以跟人合作，甚至可以和老外合作。老外很容易接受跨国跨地区的线上合作，反倒是国人不一定能接受。
+产品不一定针对iOS,Android市场，当别人都盯着这里的时候，你反倒可以试试做PC的，体感的，可以投放到steam等平台。
+（3）针对海外市场做独立软件开发或者建个网站做SAAS服务。
+很多老外独立软件开发者都是这样做的，特别是做SAAS服务比较靠谱。但前提是海外市场。
+（4）如果是回老家，有一些本地资源关系，还可以做一些to B的网站或软件开发，但难度比较大，一个人会有问题。但如果是做一些管理维护或咨询工作，就相对简单些。
+总的来说，不管是接外包项目，还是做独立开发者（游戏，软件，SAAS），还是利用关系做东西或者咨询，都要有个人品牌意识（固定的个人网站，博客，相对固定的产品和服务类型），不要打一枪换个地方。而且在某个领域做的久了，哪天浪潮来了就可以顺势而起，利用自己的累计和沉淀做一番事业。
+多去尝试下海外市场吧，在这片神奇的土地上做SOHO比创业还难。
+
+oracle，redhat，canonical 都有开源soho岗位。
+还有37signal，github 之类。
+
+答题前，我需要说明我不是程序员，我是SOHO，负责推广的
+在我认识的SOHO程序员中，较为成功的（就是挣钱比较多），他们都有一个共同点：
+**对推广以及产品都相当了解**
+如果你在之前的公司工作了很久，但找不到技术和产品以及推广的某些联系，我不建议你SOHO，因为这样你最多只能写个APP发布到苹果应用商店，成功机会很低很低。
+**我的建议是：有相当把握（在公司业余时间操作才算有把握），掌握了推广和产品的窍门后再SOHO，这样才能将你的技术价值最大化。当然你也可以找会推广的人合作，但自身要对推广有一点认识，才不会被猪队友坑！**
+
+https://segmentfault.com/a/1190000000269342
+
+https://www.sohotask.com/zh-cn/
+
+https://www.douban.com/group/topic/84746155/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
