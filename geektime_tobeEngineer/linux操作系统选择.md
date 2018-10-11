@@ -730,7 +730,7 @@ yaourt -S shadowsocks redsocks-git pcap-dnsproxy-git
 curl ip.gs ；proxychains4 curl ip.cn;curl ip.cn
 
 archlinuxcn/besttrace 1.2-2
-    IPIP.net 开发的加强版 traceroute，附带链路可视化
+​    IPIP.net 开发的加强版 traceroute，附带链路可视化
 
 ### 邮件
 
@@ -866,6 +866,95 @@ Visual Studio Code，Eclipse – Egit，TortoiseGit，SourceTree是老牌的Git 
 
 
 ### geany
+
+
+
+### 蓝牙
+
+```
+sudo pacman -S  bluez bluez-utils
+$ sudo systemctl enable bluetooth.service
+$ sudo systemctl start bluetooth.service
+ sudo modprobe btusb
+ bluetoothctl
+ 
+ $ sudo bluetoothctl
+[bluetooth]# power on
+[bluetooth]# agent on
+[bluetooth]# default-agent
+[bluetooth]# pairable on
+[bluetooth]# discoverable on
+[bluetooth]# scan on
+[bluetooth]# devices
+Device XX:XX:XX:XX:XX:XX Some device
+[bluetooth]# trust XX:XX:XX:XX:XX:XX
+[bluetooth]# connect XX:XX:XX:XX:XX:XX
+Attempting to connect to XX:XX:XX:XX:XX:XX
+[CHG] Device XX:XX:XX:XX:XX:XX Connected: yes
+Request confirmation
+[agent] Confirm passkey 360914 (yes/no): yes
+[bluetooth]# pair XX:XX:XX:XX:XX:XX
+https://docs.khadas.com/zh-cn/vim2/HowToSetupBluetooth.html
+
+dmesg | grep -i Bluetooth
+systemctl status bluetooth
+rfkill list all
+rfkill block bluetooth 
+rfkill unblock bluetooth
+sudo systemctl restart bluetooth
+
+sudo wget -O /lib/firmware/brcm/BCM.hcd https://github.com/winterheart/broadcom-bt-firmware/blob/master/brcm/BCM43142A0-105b-e065.hcd
+
+yaourt hcitool
+hcitool dev
+
+```
+
+terminator
+
+### 源码阅读工具
+
+主要的交叉索引工具有：ctags、cscope、global、lxr、KScope、sourcenav、calltree、CodeViz、ncc、gprof等。
+
+Global Global是GNU出品的交叉索引工具，能生成交叉索引的web页，很适合用来做程序的文档。
+
+LXR：可能我分析得不深入，它的代码不是用C写的，是网页脚本，程序也很短，没有看到有应用数据库。很多的东西都是你浏览的时候才生成的，所以拿过来用或改造的潜力有限，而且代码分析的不够Global细腻。 
+
+KScope KScope是cscope的图形前端
+
+#### sourcenav snavigator
+
+下载源码sudo ./configure –prefix=/home/h8yung/opt/sourcenav
+
+sudo make，以及sudo make install
+
+./snavigator
+
+
+
+Graphviz是专门绘制有向图和无向图的工具
+
+Doxygen是源码文档化工具，也能绘制调用图，它似乎是自己分析源码获得函数调用关系的
+
+vim + ctags + cscope
+
+
+
+### github插件
+
+Octotree
+
+Sourcegraph for GitHub
+
+Insight.io
+
+GitHub Hovercard：鼠标悬停看人资料
+
+Awesome Autocomplete for GitHub：智能搜索插件
+
+ZenHub for GitHub：持续集成，敏捷开发
+
+
 
 
 

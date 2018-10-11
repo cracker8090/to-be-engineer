@@ -494,6 +494,311 @@ https://kuaibao.qq.com/s/20180314A082OB00?refer=spider
 
 
 
+## webservice
+
+**一、概念** 
+
+传统上，我们把计算机后台程序（Daemon）提供的功能，称为"服务"（service）。比如，让一个杀毒软件在后台运行，它会自动监控系统，那么这种自动监控就是一个"服务"。**通俗地说，"服务"就是计算机可以提供的某一种功能。** 可分为本地服务和网络服务，网络服务就是通过网络调用其他网站的资源。
+
+```
+除了WebService外,常见的远程调用技术还有RMI（Remote method invoke）和CORBA,由于WebService的跨平台和跨编程语言特点,因此比其他两种技术应用更为广泛,但性能略低.
+
+
+什么是Web Services？
+    Web Services 是应用程序组件
+    Web Services 使用开放协议进行通信
+    Web Services 是独立的（self-contained）并可自我描述
+    Web Services 可通过使用UDDI来发现
+    Web Services 可被其他应用程序使用
+    XML 是 Web Services 的基础
+
+Web services 平台的元素：
+    SOAP (简易对象访问协议)
+    UDDI (通用描述、发现及整合)
+    WSDL (Web services 描述语言)
+
+
+```
+
+
+
+**二、webservice架构和云** 
+
+如果一个软件的主要部分采用了"网络服务"，即它把存储或计算环节"外包"给其他网站了，那么我们就说这个软件属于Web Service架构。**Web Service架构的基本思想，就是尽量把非核心功能交给其他人去做，自己全力开发核心功能。**比如，如果你要开发一个相册软件，完全可以使用Flickr的网络服务，把相片都储存到它上面，你只要全力做好相册本身就可以了。总体上看，凡是不属于你核心竞争力的功能，都应该把它"外包"出去。
+
+**最近很红的"云计算"（cloud computing）或者"云服务"（cloud services），实际上就是Web Service的同义词** ，**它们不说你把事情交给其他计算机去做，而说你把事情交给"云"去做。** 
+
+**三、本地服务的缺陷** 
+
+"网络服务"是未来软件开发和使用的趋势，本地服务将用得越来越少，主要因为以下三个原因：
+
+> *　本地资源不足。很多数据和资料，本地得不到，只有向其他网站要。
+>
+> *　成本因素。本地提供服务，往往是不经济的，使用专业网站的服务更便宜。这里面涉及硬件和人员两部分，即使你买得起硬件，专门找一个人管理系统，也是很麻烦的事。
+>
+> *　可移植性差。如果你想把本机的服务，移植到其他机器上，往往很困难，尤其是在跨平台的情况下。
+
+**四、Web Service的优势** 
+
+除了本地服务的缺点以外，Web Service还有以下的优越性：
+
+> *　平台无关。不管你使用什么平台，都可以使用Web service。
+>
+> *　编程语言无关。只要遵守相关协议，就可以使用任意编程语言，向其他网站要求Web service。这大大增加了web service的适用性，降低了对程序员的要求。
+>
+> *　对于Web service提供者来说，部署、升级和维护Web service都非常单纯，不需要考虑客户端兼容问题，而且一次性就能完成。
+>
+> *　对于Web service使用者来说，可以轻易实现多种数据、多种服务的聚合（mashup），因此能够做出一些以前根本无法想像的事情。
+
+**五、Web service的发展趋势** 
+
+根据我的观察，目前Web service有这样几种发展趋势。
+
+> *　在使用方式上，RPC和soap的使用在减少，Restful架构占到了主导地位。
+>
+> *　在数据格式上，XML格式的使用在减少，json等轻量级格式的使用在增多。
+>
+> *　在设计架构上，越来越多的第三方软件让用户在客户端（即浏览器），直接与云端对话，不再使用第三方的服务器进行中转或处理数据。
+
+感觉云计算，SaaS都是WebService的具体表现或延伸
+
+
+
+不同平台，开发语言之间通过SOAP来交互的web service都能够较好的互通
+
+由于REST只是一种基于Http协议实现资源操作的思想，因此各个网站的REST实现都自有一套，在性能和可用性上会大大高于SOAP发布的web service，但统一通用方面远远不及SOAP。由于这些大网站的SP往往专注于此网站的API开发，因此通用性要求不高。SOAP在成熟度上优于REST。REST还有一个很吸引开发者的就是能够很好的融合当前Web2.0的很多前端技术来提高开发效率。例如很多大型网站开放的REST风格的API都会有多种返回形式，除了传统的xml作为数据承载，还有（JSON,RSS,ATOM）等形式，这对很多网站前端开发人员来说就能够很好的mashup各种资源信息。
+
+**xml+xsd，soap和wsdl是构成webservice平台的三大技术。** 
+
+xml+xsd：webservice采用http协议传输数据，采用xml格式封装数据。
+
+soap：webservice通过http协议发送请求和接收数据时，发送请求的内容和结果都采用xml格式封装，并增加了一些特定的http消息头，以说明http消息的内容格式，这些特定的http消息头和xml内容格式就是soap协议。soap提供了标准的RPC方法来调用webservice。soap协议 = http协议+xml数据格式
+
+wsdl：webservice客户端要调用一个webservice服务，首先要知道这个服务器的地址在哪，以及这个服务器中有哪些方法可以调用，所以webservice服务器首先要通过一个wsdl文件来说明自己家中有哪些方法可以被外界调用，方法包括 参数、返回值等。
+
+wsdl主要描述webservice参数及其返回值。他是webservice客户端和服务器都能理解的标准格式。wsdl文件保存在web服务器上，通过一个url地址就能够访问到它。所以，客户端要调用一个webservice服务之间，要知道该服务的wsdl文件的地址。**webservice服务商通过两种方式发布他的wsdl文件地址**：1>注册到UDDI服务器，以便被人查找；2>直接告诉给客户端调用者。
+
+借助一些webservice框架很容易将自己的业务发布到webservice服务器上，java典型的框架包括：axif，xfire，cxf等。
+
+所谓远程调用，就是一台计算机a上 的一个程序可以调用到另外一台计算机b上的一个对象的方法，譬如，银联提供给商场的pos刷卡系统，商场的POS机转账调用的转账方法的代码其实是跑在银 行服务器上。再比如amazon，天气预报系统，淘宝网，校内网，百度等把自己的系统服务以webservice服务的形式暴露出来，让第三方网站和程 序可以调用这些服务功能，这样扩展了自己系统的市场占有率，往大的概念上吹，就是所谓的SOA应用。
+
+
+
+### SOAP
+
+SOAP：简单对象访问协议，简单对象访问协议（SOAP）是一种轻量的、简单的、基于 XML 的协议，它被设计成在 WEB 上交换结构化的和固化的信息。 SOAP 可以和现存的许多因特网协议和格式结合使用，包括超文本传输协议（ HTTP），简单邮件传输协议（SMTP），多用途网际邮件扩充协议（MIME）。它还支持从消息系统到远程过程调用（RPC）等大量的应用程序。
+
+
+
+在 RPC  上使用 SOAP 并不仅限于 HTTP 协议绑定。SOAP也可以绑定到TCP和UDP协议上。
+
+SOAP 编码规则：它定义了一种序列化的机制，用于交换应用程序所定义的数据类型的实例。
+
+SOAP RPC 表示：它定义了用于表示远程过程调用和应答的协定。
+
+SOAP 绑定：定义了一种使用底层传输协议来完成在节点间交换SOAP封装的约定。
+
+###  **Restful** 
+
+ REST(Representational State Transfer)一种**轻量级的Web Service架构，可以完全通过HTTP协议实现**。其实现和操作比SOAP和XML-RPC更为简洁，还可以利用缓存Cache来提高响应速度，性能、效率和易用性上都优于SOAP协议。
+REST架构对资源的操作包括获取、创建、修改和删除资源的操作正好对应HTTP协议提供的GET、POST、PUT和DELETE方法(Verb) 
+
+
+
+**Restful与SOAP的区别** 
+
+ 安全性：SOAP会好于restful 
+
+ 效率和易用性(REST更胜一筹)
+
+ 成熟度(总的来说SOAP在成熟度上优于REST) 
+
+
+
+Java中共有三种WebService规范，分别是  
+
+​       JAX-WS(Java API For XML-WebService)  
+
+​       JAXM&SAAJ(Java API For XML Message)  
+
+​       JAX-RS，是Java针对REST(Representation State Transfer)制定的服务规范  
+
+​	JAX-WS和JAXM&SAAJ都是基于SOAP的web服务，相比之下JAXM&SAAJ暴露了SOAP更多的底层细节，如果想控制SOAP消息的更多细节，可以使用；而JAX-WS更加抽象，隐藏了更多的细节，更加面向对象，实现时基本不需要关系SOAP的任何细节。   
+
+​	JAX-RS    REST是一种软件架构模式，不是像SOAP那样本身承载着一种消息协议。REST中重要的两个概念就是资源定位和资源操作，而HTTP协议恰好完整的提供了这两个要点，HTTP协议中的URI可以完成资源定位，GET、POST、OPTION等方法可以完成资源操作，因此REST完全依赖HTTP协议就可以完成Web服务，而不像SOAP协议那样只利用HTTP的传输特性，定位与操作由SOAP协议自身完成。   
+
+
+
+webservice的demo
+
+JavaWeb,MVC,Spring IOC
+
+1、知道什么是javaweb的MVC分层，2、知道Spring配置IOC是什么。[新手初识webservice-实践篇](https://my.oschina.net/achi/blog/53227) ，https://cxf.apache.org/ 
+
+
+
+**怎样调用Web Service**  
+
+可能这样说不太准确，应该是“怎样调用Web Service中定义的操作 ”      每个Web Service 都有一个描述文件（WSDL ），      它描述一个Web Service 的如下方面：      （1）服务的端口（接收SOAP消息的端口）      （2）服务提供的操作     （3）操作的输入输出格式的定义（通过XMLSchema 定义输入输出格式）       有了Web Service 的描述文件（WSDL ），我们就知道怎样调用这个Web Service 中定义的操作了。      （1）通过服务提供的操作找到你想调用的操作      （2）找到这个操作的输入格式的定义（XMLSchema ），按照这种输入格式构造一个SOAP消息      （3）将这个SOAP消息发送到服务的指定端口      （4）准备接收一个从Web Service服务器返回的 SOAP 响应吧 !
+
+
+
+**Web Service服务器端和客户端** 
+
+​    一个Web Service服务器，本质上和一个Web服务器是相同的。 
+​    它主要做下面这些事：  
+ --> 监听网络端口（监听服务端口）  
+ --> 接收客户端请求（接收SOAP请求）  
+ --> 解析客户端请求（解析SOAP消息，将SOAP消息转换为数据对象） 
+ --> 调用业务逻辑 （调用Web Service实现类的特定操作，参数是由SOAP消息转换而来的数据对象） 
+ --> 生成响应 （将返回值转换为SOAP消息） 
+ --> 返回响应 （返回SOAP响应）
+
+ 
+
+WebService开发可以分为服务器端开发和客户端开发两个方面：
+
+**服务端开发**：把公司内部系统的业务方法发布成WebService服务，供远程合作单位和个人调用。
+
+(借助一些WebService框架可以很轻松地把自己的业务对象发布成WebService服务，
+
+Java方面的典型WebService框架包括：axis，xfire，cxf 等，java ee服务器通常也支持发布WebService服务，例如JBoss。)
+
+
+**客户端开发：**调用别人发布的WebService服务，大多数人从事的开发都属于这个方面，例如，调用天气预报WebService服务。
+
+（使用厂商的WSDL2Java之类的工具生成静态调用的代理类代码；
+
+使用厂商提供的客户端编程API类；
+
+使用SUN公司早期标准的jax-rpc开发包；
+
+使用 SUN公司最新标准的jax-ws开发包。)
+
+**WebService 的工作调用原理：** 
+
+​	对客户端而言，我们给这各类WebService客户端API传递wsdl文件的url地址，这些API就会创建出底层的代理类，我调用这些代理，就可以访问到webservice服务。代理类把客户端的方法调用变成soap格式的请求数据再通过HTTP协议发出去，并把接收到的soap数据变成返回值返回。
+
+​	 对服务端而言，各类WebService框架的本质就是一个大大的Servlet，当远程调用客户端给它通过http协议发送过来   soap格式的请求数据时，它分析这个数据，就知道要调用哪个java类的哪个方法，于是去查找或创建这个对象，并调用其方法，再把方法返回的结果包装成  soap格式的数据，通过http响应消息回给客户端。
+
+
+
+![](/run/media/dhasijkd/learning/md_pictures/网络协议TCP.png)
+
+
+
+引用：http://www.ruanyifeng.com/blog/2009/08/what_is_web_service.html
+
+
+
+
+
+可以在未来物联网，依赖高网速实现服务器处理
+
+RPC就是从一台机器（客户端）上通过参数传递的方式调用另一台机器（服务器）上的一个函数或方法（可以统称为服务）并得到返回的结果。
+
+RPC 会隐藏底层的通讯细节（不需要直接处理Socket通讯或Http通讯） RPC 是一个请求响应模型。
+
+客户端发起请求，服务器返回响应（类似于Http的工作方式） RPC 在使用形式上像调用本地函数（或方法）一样去调用远程的函数（或方法）。
+
+
+
+接口调用通常包含两个部分，序列化和通信协议。
+　　常见的序列化协议包括json、xml、hession、protobuf、thrift、text、bytes等；
+　　通信比较流行的是http、soap、websockect，RPC通常基于TCP实现，常用框架例如dubbo，netty、mina、thrift
+
+> 首先解释下两种接口调用：
+> 　　Rest：严格意义上说接口很规范，操作对象即为资源，对资源的四种操作（post、get、put、delete），并且参数都放在URL上,但是不严格的说Http+json、Http+xml，常见的http api都可以称为Rest接口。
+> 　　Rpc:我们常说的远程方法调用，就是像调用本地方法一样调用远程方法，通信协议大多采用二进制方式
+
+在微服务中，使用什么协议来构建服务体系，一直是个热门话题。 争论的焦点集中在两个候选技术： (binary) RPC or Restful。
+　　业内对微服务的实现，基本是确定一个组织边界，在该边界内，使用RPC; 边界外，使用Restful。这个边界，可以是业务、部门，甚至是全公司。
+
+以Apache Thrift为代表的二进制RPC，支持多种语言（但不是所有语言），四层通讯协议，性能高，节省带宽。相对Restful协议，使用Thrifpt RPC，在同等硬件条件下，带宽使用率仅为前者的20%，性能却提升一个数量级。但是这种协议最大的问题: **无法穿透防火墙**。
+
+在微服务架构中，各个服务之间可能千差万别，**rest接口更加灵活，如果使用RPC则会有很多约束**
+
+- RPC：所谓的远程过程调用 (面向方法)
+- SOA：所谓的面向服务的架构(面向消息)
+- REST：所谓的 Representational state transfer (面向资源)
+
+
+
+RPC阵营如下
+
+\1. Web Service采用HTTP协议做传输层协议，采用SOAP做应用层协议
+
+\2. XML-RPC，采用HTTP协议做传输层协议，使用自定义XML做应用层协议
+
+\3. JMI, Thrift, Protobuf等都使用TCP做传输协议，使用自定义应用层协议
+
+RPC阵营如下
+
+\1. Web Service和XML-RPC采用基于文本的XML进行序列化
+
+\2. RMI基于Java序列化协议
+
+\3. Thrfit, Protobuf等采用了基于二进制流的序列化协议，比如就是采用消息头消息体的方式传输，通过消息头来定义长度，从而保证能够正确读写数据
+
+REST近年来有取代Web Service的趋势，主要是Web Service的优点它都有，而且更轻量级，采用JSON来序列化数据性能也还可以，编程模型更加简单，适合组织内向组织外发布服务。
+
+\1. RPC是面向动作的（方法调用）
+
+\2. REST是面向资源的（URL表示资源，HTTP动词表示动作）
+
+从变现形式来看，RPC的编程模型较重量级，REST的编程模型更轻量级
+
+**Rest**：严格意义上说接口很规范，操作对象即为资源，对资源的四种操作（post、get、put、delete），并且参数都放在URL上,
+
+​         但是不严格的说Http+json、Http+xml，常见的http api都可以称为Rest接口。
+
+**Rpc**:   我们常说的远程方法调用，就是像调用本地方法一样调用远程方法，通信协议大多采用二进制方式
+
+现在开源中间件，基本最先支持的几个协议都包含RESTful
+
+**实际上内部都是采用性能更高的RPC方式。而对外开放的才是RESTful** 
+
+Rest 调用及测试都很方便，Rpc就显得有点麻烦，但是Rpc的效率是毋庸置疑的，所以建议在多系统之间采用Rpc，对外提供服务，Rest是很适合的
+  duboo在生产者和消费者两个微服务之间的通信采用的就是Rpc,无疑在服务之间的调用Rpc更变现的优秀
+
+在微服务架构中，各个服务之间可能千差万别，rest接口更加灵活，如果使用RPC则会有很多约束
+
+“描述性状态传递（**re**presentational **s**tate **t**ransfer）,” 
+
+
+
+
+
+https://www.oschina.net/translate/understanding-rest-and-rpc-for-http-apis?print
+
+https://segmentfault.com/q/1010000000484829
+
+https://www.jianshu.com/p/b0343bfd216e
+
+http://www.ruanyifeng.com/blog/2011/09/restful.html
+
+https://books.studygolang.com/go-rpc-programming-guide/
+
+http://windpoplar.iteye.com/blog/2354931
+
+http://www.voidcn.com/article/p-nkbgkgbg-bd.html
+
+https://www.zhihu.com/question/28557115
+
+https://www.zhihu.com/question/41609070
+
+https://www.zhihu.com/question/28570307
+
+https://blog.csdn.net/sanluo11/article/details/52604584
+
+rpc远程过程调用实例
+
+tr069
+
+protobuf api
+
+
+
 
 
 # 参考文献
