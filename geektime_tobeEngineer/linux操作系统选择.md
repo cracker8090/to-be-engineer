@@ -869,6 +869,40 @@ Visual Studio Code，Eclipse – Egit，TortoiseGit，SourceTree是老牌的Git 
 
 
 
+### VNC
+
+**Remmina** 
+
+tigervnc
+
+VNC Viewer
+
+
+
+### nmap
+
+用namp对局域网扫描一遍，然后查看arp缓存表就可以知道局域内ip对应的mac了。namp比较强大也可以直接扫描mac地址和端口。执行扫描之后就可以 cat /proc/net/arp查看arp缓存表了。
+
+nmap -sP 192.168.1.0/24　//进行ping扫描，打印出对扫描做出响应的主机.探测C段存活主机，可以用 |grep up 过滤存活的主机
+
+nmap -sL 192.168.1.0/24　//仅列出指定网络上的每台主机，不发送任何报文到目标主机
+
+nmap -PS 192.168.1.234　探测目标主机开放的端口，可以指定一个以逗号分隔的端口列表(如-PS  22，23，25，80)
+
+nmap -PU 192.168.1.0/24	//使用UDP ping探测主机
+
+nmap -sS 192.168.1.0/24	//使用频率最高的扫描选项（SYN扫描,又称为半开放扫描），它不打开一个完全的TCP连接，执行得很快.SYN扫描，指定IP范围指定端口,nmap -sS 1.1.1.1-30 -p 80
+
+nmap -sV 1.1.1.1 -p 1-65535	//探测端口的服务和版本
+
+nmap -O 1.1.1.1 或 nmap -A 1.1.1.1		//探测操作系统类型和版本
+
+ https://blog.csdn.net/keepSmi1e/article/details/9370049
+
+https://wizardforcel.gitbooks.io/nmap-man-page/content/10.html
+
+https://nmap.org/man/zh/index.html#man-description
+
 ### 蓝牙
 
 ```
