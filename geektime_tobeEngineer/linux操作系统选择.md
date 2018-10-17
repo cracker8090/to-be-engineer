@@ -903,6 +903,20 @@ https://wizardforcel.gitbooks.io/nmap-man-page/content/10.html
 
 https://nmap.org/man/zh/index.html#man-description
 
+
+
+### 媒体播放器
+
+vlc C++
+
+Mplay C语音（SMPlayer），mpv，baba ；PotPlayer韩国人
+
+kodi，这个播放器与mpc-hc基本可以看做一家人,目前也就这个分支在继续开发,独立安装的播放器Kodi
+
+https://github.com/taxigps/xbmc-addons-chinese/blob/master/plugin.video.asia-tv/Users_Guide.txt
+
+
+
 ### 蓝牙
 
 ```
