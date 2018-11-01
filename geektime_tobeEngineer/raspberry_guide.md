@@ -28,7 +28,23 @@ aplay /usr/share/sounds/alsa/Front_Center.wav
 
 
 
-# 树莓派外网访问
+
+
+
+
+# 外挂硬盘
+
+JDownloader无广告bt下载
+
+树莓派启动的时候固定是从 SD 卡的第一个分区（/boot）读取 `config.txt`、`cmdline.txt` 和 `kernel.img` 这三个文件。我配的是5V3A的电源，外接一个有自动休眠功能的硬盘，做NAS妥妥的。请注意，硬盘一定要有闲时休眠功能，否则用一段就挂了。
+
+[树莓派添加USB外接硬盘](https://blog.csdn.net/huayucong/article/details/48812573) ，[给树莓派挂载移动硬盘或U盘](http://shumeipai.nxez.com/2013/09/08/raspberry-pi-to-mount-the-removable-hard-disk.html) ，[树莓派 RASPBERRY PI SD卡系统备份与还原](https://zvv.me/xiankan/RASPBERRY-PI-SD-backup.html) 
+
+
+
+
+
+# [树莓派外网访问](https://github.com/ma6174/blog/issues/7) 
 
 
 
@@ -42,15 +58,92 @@ aplay /usr/share/sounds/alsa/Front_Center.wav
 >
 > 所以要在`vps`上搭建`VPN`, 然后树莓派和控制端都连上`VPN`
 
-
+网上找到[这样的方法](http://lukin.cn/201312/Ubuntu_command_How_to_connect_VPN/)连vpn：`sudo pptpsetup --create vpnname --server ip --username test --password test --encrypt --start`，但是树莓派一执行这个命令就断网，原因未知，只能重启。
 
 ## SSH内网穿透
 
 > 原理是这样的假设`vps`地址是`10.10.10.10`，树莓派通过`ssh`连接到`vps`，同时将`vps`上某个端口比如`8888`映射到树莓派的`ssh`端口比如`22`，这样在`vps`上访问8888端口就相当于访问树莓派的`22`端口。
 >
 > ```
+> ssh参数解释：
+> -N：不执行任何指令
+> -f：背景执行
+> -R：主要建立reverse tunnel的参数
+> 
 > $ ssh -f -N -R 8888:localhost:22 username@10.10.10.10
+> 
+> ssh -f -N -R 57612:127.0.0.1:223 root@65.49.228.80
+> ssh -f -N -R 57612:127.0.0.1:223 root@65.49.228.80
+> 
+> （1）ssh -p 26435 -f -N -R 30000:localhost:22 root@65.49.228.80
+> autossh -p 26435 -M 30001 -f -N -R 30000:localhost:22 root@65.49.228.80
+> autossh -p 26435 -M 30001 -f -N -R '*:30000:localhost:22' root@65.49.228.80
+> 
+> lsof -i :30000
+> （2）局域网手机（ssh -N -f -L 2222:127.0.0.1:2222 root@vps的IP；ssh -p 2222 username@localhost）
+> 
+> ssh   -CfNg -R 57612:127.0.0.1:223  65.49.228.80
+> 
+> vps修改防火墙：
+> iptables-L-n可以查看当前iptables的开放端口情况
+> vim /etc/sysconfig/iptables
+> 
+> -A INPUT -p tcp -m multiport --dport 20,21  -m state --state NEW -j ACCEPT   --开启20,21端口
+> -A INPUT -p tcp -m state --state NEW -m tcp --dport 21 -j ACCEPT            --开启21主动端口
+> -A INPUT -p tcp --dport 30000:31000 -j ACCEPT             --开启被动端口
+> 
+> 开放某端口：iptables -I INPUT -p tcp --dport 80 -j ACCEPT
+> 关闭某端口 : iptables -D INPUT -p tcp --dport 80 -j ACCEPT
+> 屏蔽某个IP请求 : iptables -I INPUT -s 192.168.0.1 -j DROP (屏蔽单个IP192.168.0.1)
+> 屏蔽IP某段请求 : iptables -I INPUT  -s 192.168.0.0/16  -j DROP(屏蔽单个IP192.168.0.0-192.168.255.255)
+> 屏蔽整个IP段请求 ：iptables -I INPUT -s 192.168.0.0/16   -j DROP(屏蔽单个IP192.0.0.0-192.255.255.255)
+> 添加iptables配置项：service iptables save  
+> 重新启动服务：service iptables restart
+> 
+> 目标A：内网服务器（开发服务器），服务器端口8080，映射端口8088
+> 目标B：外网VPS，服务器端口8089，映射本地端口8088，公网IP：192.168.1.111(举例IP，替换成相应的地址即可)
+> 访问者C : 可以访问VPS，不能访问A
+> 1）目标A，启动服务(原理SSH 反向代理)
+> 	ssh -fCNR 8088:localhost:8080 root@192.168.1.111
+> 2）目标B，启动服务(原理SSH 正向代理)
+> 	ssh -fCNL *:8089:localhost:8088 localhost
+> 3）访问者C， 访问 http://192.168.1.111:8089, 完成访问
+> 
+> ssh 连接不稳定，一段时间可能断开的问题，使用autossh解决
+> #-M 6677为 autossh 维持访问的端口, 其他参数同ssh
+> ➜  ~ autossh -M 6677 -fCNR 8088:localhost:8088 root@XXX
+> 
+> sudo pacman -S autossh
+> autossh -p 22 -M 6777 -NR 6766:localhost:22 usera@a.site
+> 打洞修改autossh -p 22 -M 6777 -NR '*:6766:localhost:22' usera@a.site
+> 
+> B $ sudo useradd -m autossh
+> B $ sudo passwd autossh
+> 免密ssh-copy-id username@1.1.1.1
+> autossh -M 5678 -fNR 2222:localhost:22 username@1.1.1.1
 > ```
+
+[autossh](http://arondight.me/2016/02/17/%E4%BD%BF%E7%94%A8SSH%E5%8F%8D%E5%90%91%E9%9A%A7%E9%81%93%E8%BF%9B%E8%A1%8C%E5%86%85%E7%BD%91%E7%A9%BF%E9%80%8F/) 
+
+常用ss命令：
+
+ss -l 显示本地打开的所有端口
+
+ss -pl 显示每个进程具体打开的socket
+
+ss -t -a 显示所有tcp socket
+
+ss -u -a 显示所有的UDP Socekt
+
+ss -o state established '( dport = :smtp or sport = :smtp )' 显示所有已建立的SMTP连接
+
+ss -o state established '( dport = :http or sport = :http )' 显示所有已建立的HTTP连接
+
+ss -x src /tmp/.X11-unix/* 找出所有连接X服务器的进程
+
+ss -s 列出当前socket详细信息
+
+
 
 
 
@@ -82,6 +175,24 @@ aplay /usr/share/sounds/alsa/Front_Center.wav
 >
 > Offical Website: <https://ngrok.com/>
 > Open Source: <https://github.com/inconshreveable/ngrok> 
+
+
+
+## [frp建立服务器注册](http://www.10tiao.com/html/357/201801/2247485670/1.html) 
+
+
+
+
+
+# 连接摄像头
+
+**sudo apt-get update**
+
+**sudo apt-get upgrade** 
+
+sudo raspi-config，选择接口->摄像头，重启
+
+内存卡修复工具SDFormatter.exe，ipscan22.exe（https://pan.baidu.com/s/1skNBZsT#list/path=%2F，3oar）
 
 
 
@@ -196,7 +307,25 @@ Xbian，变成盒子
 
 
 
+smb配置
 
+```shell
+sudo pacman -S samba gvfs-smb thunar-shares-plugin
+sudo pacman -S manjaro-settings-samba会自动做一些配置，/etc/samba/smb.conf
+[kodi_share]
+comment = Kodishare Directories
+path = /run/media/dhasijkd/39B544B735E40466/classic_video
+browseable = yes
+read only = no
+create mask = 0700
+directory mask = 0700 
+添加分享用户并设置密码
+gpasswd sambashare -a username
+smbpasswd -a username
+启用smaba 服务
+systemctl enable smb nmb
+systemctl start smb nmb
+```
 
 
 

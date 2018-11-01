@@ -1,4 +1,74 @@
+
+
+# 1.ssh设置
+
+## （1）常见查询设置
+
+ps -e |grep ssh
+
+sudo /etc/init.d/ssh start 或者 service ssh start
+
+ssh-server配置文件位于/etc/ssh/sshd_config，在这里可以定义SSH的服务端口，默认端口是22，你可以自己定义成其他端口号，如222
+
+然后重启SSH服务：
+sudo /etc/init.d/ssh stop
+sudo /etc/init.d/ssh start
+
+## （2）arch linux
+
+```bash
+# systemctl enable sshd.service     开机启动
+
+# systemctl start sshd.service      立即启动
+
+# systemctl restart sshd.service    立即重启
+```
+
+
+
+## （3）手动创建自启动脚本
+
+在 /usr/lib/systemd/system下创建一个文件叫做vpnagentd.service
+
+```
+[Unit]
+Description=Cisco VPN Service
+Wants=NetworkManager.service
+After=NetworkManager.service
  
+[Service]
+Type=forking
+ExecStart=/opt/cisco/anyconnect/bin/vpnagentd
+PIDFile=/var/run/vpnagentd.pid
+ExecReload=/usr/bin/kill -HUP $MAINPID
+ 
+[Install]
+WantedBy=multi-user.target
+```
+
+这里的ExecStart填写的是你要启动的vpnagentd所在的路径, 其他的参数都一目了然, WantedBy暂时先不解释(因为窝也没研究呢。然后 执行 ` systemctl enable vpnagentd.service`  然后就可以啦
+
+## （4）设置程序自启动
+
+    （1）桌面创建启动器，比如我安装了Cairo-dock，创建一个启动器（.desktop文件）后显示如下内容：
+    [Desktop Entry]
+    Version=1.0
+    Type=Application
+    Name=Cairo-Dock
+    Comment=A light and eye-candy dock and desklets for your desktop.
+    Exec=cairo-dock
+    Icon=/usr/share/pixmaps/cairo-dock.svg
+    Path=
+    Terminal=false
+    StartupNotify=false
+    （2）将其复制到
+    ## ~/.config/autostart/
+
+
+
+ 
+
+# 2.VNC配置
 
 ```
 vncpasswd设置密码
