@@ -30,8 +30,6 @@ aplay /usr/share/sounds/alsa/Front_Center.wav
 
 
 
-
-
 # 外挂硬盘
 
 JDownloader无广告bt下载
@@ -46,11 +44,7 @@ JDownloader无广告bt下载
 
 # [树莓派外网访问](https://github.com/ma6174/blog/issues/7) 
 
-
-
 在树莓派上面写一个脚本（任意语言）将采集到的传感器上传到VPS上面的网站程序。又或者使用现在流行的物联云，例如著名的yeelink来实现，这样就连vps也不用了。就能随处查看树莓派上面的传感器信息。
-
-
 
 ## Vpn
 
@@ -326,6 +320,29 @@ smbpasswd -a username
 systemctl enable smb nmb
 systemctl start smb nmb
 ```
+
+
+
+[2018年10款最佳Linux媒体服务器软件](https://www.howtoing.com/best-media-server-software-for-linux) 
+
+
+
+## 树莓派安装DLNA服务器
+
+
+
+```
+sudo apt-get install minidlna
+sudo vi /etc/minidlna.conf	#安装完成后，需要配置dlna服务器的目录
+media_dir=/home/pi	#添加一行，将pi的home目录加入到DLNA目录中。
+sudo service minidlna restart	#重启minidlna
+
+ios 推荐使用mobiplayer
+
+```
+
+umount /media/...
+mount -o rw /dev/sda7 /media
 
 
 

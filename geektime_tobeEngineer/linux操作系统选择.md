@@ -8,6 +8,8 @@ https://fossbytes.com/best-linux-distros-for-programming-developers/
 
 https://fossbytes.com/secure-linux-distros-privacy-anonymity/
 
+[https://en.m3uiptv.com/](https://www.youtube.com/redirect?q=https%3A%2F%2Fen.m3uiptv.com%2F&event=video_description&v=B_vMWJ0tCHQ&redir_token=Uqwizl1GOpmmuSnHXRS1OSxm3kx8MTU0Njc2MjUyMUAxNTQ2Njc2MTIx) (VLC直播源)
+
 # 系统选择
 
 distrowatch操作系统评论网站
@@ -264,6 +266,9 @@ arch下安装deb
     yaourt -S debtap
     sudo debtap -u
     debtap quadrapassel_3.22.0-1.1_arm64.deb
+
+Yaourt 已死！在 Arch 上使用这些替代品https://zhuanlan.zhihu.com/p/42287487
+
 ```
 
 
@@ -525,6 +530,15 @@ windows不能读取ext4文件，可推荐Ext2Fsd，Ext2Read，Ext2Explore，Disk
 
 
 ### （9）zsh使用
+
+
+
+### (10)降级软件
+
+```
+sudo pacman -S downgrade
+sudo downgrade typora
+```
 
 
 

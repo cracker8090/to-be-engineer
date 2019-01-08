@@ -87,7 +87,7 @@ graphical.target reached after 15.029s in userspace
 ​             3ms sys-fs-fuse-connections.mount
 
 查看出错启动项
-ystemctl --all | grep not-found
+systemctl --all | grep not-found
 ● auditd.service                                                                              not-found inactive   dead      auditd.service
 ● lvm2-activation.service                                                                     not-found inactive   dead      lvm2-activation.service                                                      
 ● openvswitch.service                                                                         not-found inactive   dead      openvswitch.service                                                          
