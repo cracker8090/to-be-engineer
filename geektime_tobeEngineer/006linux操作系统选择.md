@@ -296,11 +296,42 @@ yay 的特性
 
 ```
 
+源帮助
+
+https://mirrors.ustc.edu.cn/help/manjaro.html
+
 
 
 ## 2.配置
 
 [TCP Optimizer](https://www.speedguide.net/downloads.php) 是一款绿色小工具，它可以帮助新手或高级用户调整 Windows 系统中相关的 TCP/IP 参数，从而可以轻松地将系统调整为适用所使用的 Internet 连接类型。
+
+
+
+## 3.linux下安装程序（单独）
+
+Intellij Idea最新版安装包  ideaIU-2018.1.1-no-jdk.tar.gz
+
+tar -zxvf ideaIU-2018.1.1-no-jdk.tar.gz  
+
+在 /usr/share/applications目录下创建idea.desktop文件
+
+使用 vim /usr/share/applications/idea.desktop 修改文件中内容
+
+[Desktop Entry]
+ Version=1.0
+ Type=Application
+ Name=程序开发
+ Icon=/home/shuai/deve/toolbox/intellij/idea-1703/bin/idea.png
+ Exec="/home/shuai/deve/toolbox/intellij/idea-1703/bin/idea.sh" %f
+ Comment=The Drive to Develop
+ Categories=Development;IDE;
+ Terminal=false
+ StartupWMClass=jetbrains-idea
+
+保存退出然后在启动器中已经可以看到idea图标了
+
+
 
 
 
@@ -771,6 +802,10 @@ curl ip.gs ；proxychains4 curl ip.cn;curl ip.cn
 archlinuxcn/besttrace 1.2-2
 ​    IPIP.net 开发的加强版 traceroute，附带链路可视化
 
+proxychains
+
+
+
 ### 邮件
 
 Thunderbird
@@ -831,20 +866,20 @@ aria2是一款下载工具，它支持http(s)/ftp/BitTorrent/Metalink五种协�
 
 aria2还自动验证通过BT协议下载的数据的正确性。
 
-​	*支持cookie，有些地址需要cookie才能下载，例如linuxsir的附件你单把地址复制到命令行用mytget下载是不行的。aria2能功过参数制定cookie文件，而且能自动载入firefox的cookie
-​      *支持断电续传，之所以强，是他支持除了aria2自身产生的断点续传文件外，还支持浏览器的和wget产生的断点文件
-​      *http代理，以及通过http代理的ftp代理？
-​      *支持多线程，但默认为1，需要参数'-s'设定线程数，但用BT/metalink协议自动多线程。
+	*支持cookie，有些地址需要cookie才能下载，例如linuxsir的附件你单把地址复制到命令行用mytget下载是不行的。aria2能功过参数制定cookie文件，而且能自动载入firefox的cookie
+	  *支持断电续传，之所以强，是他支持除了aria2自身产生的断点续传文件外，还支持浏览器的和wget产生的断点文件
+	  *http代理，以及通过http代理的ftp代理？
+	  *支持多线程，但默认为1，需要参数'-s'设定线程数，但用BT/metalink协议自动多线程。
 
 使用：
 
-​	下载：aria2c http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.22.6.tar.bz2
-
-​	分段下载：aria2c -s 2 http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.22.6.tar.bz2(s 后面的参数值介于 1~5 之间)
-
-​	断点续传：aria2c -c http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.22.6.tar.bz2
-
-​	下载torrent：aria2c -o gutsy.torrent <http://cdimage.ubuntu.com/daily-live/current/gutsy-desktop-i386.iso.torrent>
+	下载：aria2c http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.22.6.tar.bz2
+	
+	分段下载：aria2c -s 2 http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.22.6.tar.bz2(s 后面的参数值介于 1~5 之间)
+	
+	断点续传：aria2c -c http://www.kernel.org/pub/linux/kernel/v2.6/linux-2.6.22.6.tar.bz2
+	
+	下载torrent：aria2c -o gutsy.torrent <http://cdimage.ubuntu.com/daily-live/current/gutsy-desktop-i386.iso.torrent>
 
 其配置文件位于~/.aria2/aria2.conf
 
@@ -883,7 +918,56 @@ http://IP地址/webui，就可访问成功；如果报错，在“设置”--> �
 
 
 
+sudo apt-get install aria2
+sudo mkdir /etc/aria2    #新建文件夹  
+sudo touch /etc/aria2/aria2.session    #新建session文件
+sudo chmod 777 /etc/aria2/aria2.session    #设置aria2.session可写 
 
+sudo mousepad /etc/aria2/aria2.conf    #创建配置文件
+
+<http://aria2c.com/>
+
+**配置** 
+
+` ＝＝＝＝＝＝＝＝＝文件保存目录自行修改
+dir=/home/username/Desktop/Downloads #username根据实际情况修改
+disable-ipv6=true
+
+#打开rpc的目的是为了给web管理端用
+enable-rpc=true
+rpc-allow-origin-all=true
+rpc-listen-all=true
+#rpc-listen-port=6800
+#断点续传
+continue=true
+input-file=/etc/aria2/aria2.session
+save-session=/etc/aria2/aria2.session
+
+#最大同时下载任务数
+max-concurrent-downloads=20
+
+save-session-interval=120
+
+Http/FTP 相关
+
+connect-timeout=120
+#lowest-speed-limit=10K
+#同服务器连接数
+max-connection-per-server=10
+#max-file-not-found=2
+#最小文件分片大小, 下载线程数上限取决于能分出多少片, 对于小文件重要
+min-split-size=10M
+#单文件最大线程数, 路由建议值: 5
+split=10
+check-certificate=false
+
+http-no-cache=true
+
+` 
+
+aria2c --conf-path=/root/aria2/aria2.conf
+
+aria2c --conf-path=/etc/aria2/aria2.conf
 
 
 
@@ -998,6 +1082,22 @@ Zooming images 2.0 & 2.1 sans limitation 146%
 
 
 
+### kindle阅读相关
+
+calibre
+
+```
+sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin
+
+https://calibre-ebook.com/download_linux
+```
+
+
+
+### PDF Studio Viewer
+
+
+
 ### git使用
 
 通过将Git配置变量 core.quotepath 设置为false，就可以解决中文文件名称在这些Git命令输出中的显示问题，
@@ -1051,6 +1151,8 @@ https://nmap.org/man/zh/index.html#man-description
 
 
 ### 媒体播放器
+
+（[煲机音乐](https://jingyan.baidu.com/article/3065b3b6848caebecff8a4e3.html)）
 
 vlc C++
 
@@ -1241,17 +1343,104 @@ https://www.douban.com/group/topic/84746155/
 
 
 
+### 系统启动速度优化
+
+Arch Linux 的 systemd-analyze 是个很不错的工具，利用它你可以很直观地观察到系统启动的时间都花到哪儿去了
+
+```shell
+systemd-analyze
+```
+
+```sh
+systemd-analyze blame
+```
+
+
+
+### 安装mysql
+
+```
+sudo pacman -S mariadb mariadb-clients #安装MariaDb和其客户端工具,MariaDb默认的引擎还是Innodb
+sudo pacman -S mariadb libmariadbclient mariadb-clients
+
+#初始化MariaDb的数据目录
+sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+
+sudo systemctl start mysqld #先启动MariaDb
+
+mysqladmin -u root password '12345678' #为root用户设置一个新密码
+
+mysql -u root -p 12345678 #尝试登录MariaDb，如果登录成功，说明配置完成了
+
+sudo systemctl enable mysqld #MariaDb开机自动启动
+```
 
 
 
 
 
+图形化数据库管理工具
+
+navicat(lite)
+
+linux下破解https://github.com/cniPatch/NavicatPremium/blob/master/patch.sh
+
+第一次执行start_navicat时，会在用户主目录下生成一个名为.navicat的隐藏文件夹。
+
+—-把此文件夹删除后(删除文件夹命令是rm -rf .navicat)，下次启动navicat 会重新生成此文件夹，30天试用期会按新的时间开始计算。
+
+等到期时找到这个system.reg文件删除，navicat又会重新计算过期时间，又可以用了，这个有点麻烦。
+
+如果字体还不正常可以用gedit或vim打开start_navicat 文件将代码做如下更改
+
+```
+export LANG="en_US.UTF-8" 改为 ———> export LANG="zh_CN.UTF-8"
+```
+
+
+
+cp navicat.desktop /home/single/Desktop
 
 
 
 
 
+https://www.dyxmq.cn/windows/software/navicate-premium-12-cracked.html
 
+https://www.52pojie.cn/thread-867986-1-1.html
+
+
+
+
+
+[phpMyAdmin](https://www.phpmyadmin.net/) 
+
+
+
+
+
+Workbench
+
+这是一个Sun Systems/Oracle开发的免费工具。对于Microsoft Windows, Mac OS X和Linux平台来说，Workbench都十分有用。
+
+
+
+
+
+```text
+export https_proxy=http://127.0.0.1:12333
+export https_proxy="socks5://127.0.0.1:1080"
+export ALL_PROXY=socks5://127.0.0.1:1080
+source ~/.bashrc
+```
+
+[破解地址](https://github.com/DoubleLabyrinth/navicat-keygen/blob/windows/README_FOR_LINUX.zh-CN.md) 
+
+NAVO-FOV4-YXU6-AJLM
+
+
+
+### wine
 
 
 
