@@ -208,11 +208,11 @@ day13-14-基本数据类型对象包装类新特性。
 
 day14-01-集合框架(体系概述)。
 day14-02-集合框架(共性方法) 170
-day14-03-集合框架(迭代器)
-day14-04-集合框架(List集合共性方法)
-day14-05-集合框架(ListIterator)
-day14-06-集合框架(List集合具体对象的特点)
-day14-07-集合框架(Vector中的枚举)
+day14-03-集合框架(迭代器)。
+day14-04-集合框架(List集合共性方法)。
+day14-05-集合框架(ListIterator)。
+day14-06-集合框架(List集合具体对象的特点)。
+day14-07-集合框架(Vector中的枚举)。
 day14-08-集合框架(LinkedList)
 day14-09-集合框架(LinkedList练习)
 day14-10-集合框架(ArrayList练习)
