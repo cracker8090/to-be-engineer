@@ -213,34 +213,34 @@ day14-04-集合框架(List集合共性方法)。
 day14-05-集合框架(ListIterator)。
 day14-06-集合框架(List集合具体对象的特点)。
 day14-07-集合框架(Vector中的枚举)。
-day14-08-集合框架(LinkedList)
-day14-09-集合框架(LinkedList练习)
-day14-10-集合框架(ArrayList练习)
-day14-11-集合框架(ArrayList练习2)
+day14-08-集合框架(LinkedList)。
+day14-09-集合框架(LinkedList练习)。
+day14-10-集合框架(ArrayList练习)。
+day14-11-集合框架(ArrayList练习2)。
 day14-12-集合框架(HashSet) 180
-day14-13-集合框架(HashSet存储自定义对象)
-day14-14-集合框架(HashSet判断和删除的依据)
+day14-13-集合框架(HashSet存储自定义对象)。
+day14-14-集合框架(HashSet判断和删除的依据)。
 
 
 
 day15-01-集合框架(TreeSet)。
-day15-02-集合框架(TreeSet存储自定义对象)
-day15-03-集合框架(二叉树)
-day15-04-集合框架(实现Comparator方式排序)
-day15-05-集合框架(TreeSet练习)
-day15-06-集合框架(泛型概述)
-day15-07-集合框架(泛型使用)
+day15-02-集合框架(TreeSet存储自定义对象)。
+day15-03-集合框架(二叉树)。
+day15-04-集合框架(实现Comparator方式排序)。
+day15-05-集合框架(TreeSet练习)。
+day15-06-集合框架(泛型概述)。
+day15-07-集合框架(泛型使用)。
 day15-08-集合框架(泛型类) 190
-day15-09-集合框架(泛型方法)
-day15-10-集合框架(静态方法泛型)
-day15-11-集合框架(泛型接口)
-day15-12-集合框架(泛型限定)
-day15-13-集合框架(泛型限定2)
+day15-09-集合框架(泛型方法)。
+day15-10-集合框架(静态方法泛型)。
+day15-11-集合框架(泛型接口)。
+day15-12-集合框架(泛型限定)。
+day15-13-集合框架(泛型限定2)。
 
 
 
-day16-01-集合(Map概述)
-day16-02-集合(Map子类对象特点)
+day16-01-集合(Map概述)。
+day16-02-集合(Map子类对象特点)。
 day16-03-集合(Map共性方法)
 day16-04-集合(Map-keySet)
 day16-05-集合(Map-entrySet) 200
