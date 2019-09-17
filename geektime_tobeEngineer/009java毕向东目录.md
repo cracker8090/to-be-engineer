@@ -241,13 +241,13 @@ day15-13-集合框架(泛型限定2)。
 
 day16-01-集合(Map概述)。
 day16-02-集合(Map子类对象特点)。
-day16-03-集合(Map共性方法)
-day16-04-集合(Map-keySet)
+day16-03-集合(Map共性方法)。
+day16-04-集合(Map-keySet)。
 day16-05-集合(Map-entrySet) 200
-day16-06-集合(Map练习)
-day16-07-集合(TreeMap练习)
-day16-08-集合(TreeMap练习-字母出现的次数)
-day16-09-集合(Map扩展)
+day16-06-集合(Map练习)。
+day16-07-集合(TreeMap练习)。
+day16-08-集合(TreeMap练习-字母出现的次数)。
+day16-09-集合(Map扩展)。
 
 
 
