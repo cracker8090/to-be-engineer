@@ -251,24 +251,24 @@ day16-09-集合(Map扩展)。
 
 
 
-day17-10-集合(Collections-sort)
-day17-11-集合(Collections-max)
-day17-12-集合(Collections-binarySearch)
-day17-13-集合(Collections-替换反转)
-day17-14-集合(Collections-reverseOrder)
+day17-10-集合(Collections-sort)。
+day17-11-集合(Collections-max)。
+day17-12-集合(Collections-binarySearch)。
+day17-13-集合(Collections-替换反转)。
+day17-14-集合(Collections-reverseOrder)。
 day17-15-集合(Collections-SynList) 210
-day17-16-集合(Arrays)
-day17-17-集合(集合转成数组)
-day17-18-集合(增强for循环)
-day17-19-集合(可变参数)
-day17-20-集合(静态导入)
+day17-16-集合(Arrays)。
+day17-17-集合(集合转成数组)。
+day17-18-集合(增强for循环)。
+day17-19-集合(可变参数)。
+day17-20-集合(静态导入)。
 
 
 
-day18-01-其他对象(System)
-day18-02-其他对象(Runtime)
-day18-03-其他对象(Date)
-day18-04-其他对象(Calendar)
+day18-01-其他对象(System)。
+day18-02-其他对象(Runtime)。
+day18-03-其他对象(Date)。
+day18-04-其他对象(Calendar)。
 day18-05-其他对象(Math-Random) 220
 day18-06-IO流(概述)
 day18-07-IO流(FileWriter)
