@@ -270,26 +270,26 @@ day18-02-其他对象(Runtime)。
 day18-03-其他对象(Date)。
 day18-04-其他对象(Calendar)。
 day18-05-其他对象(Math-Random) 220
-day18-06-IO流(概述)
-day18-07-IO流(FileWriter)
-day18-08-IO流(IO异常处理方式)
-day18-09-IO流(文件的续写)
-day18-10-IO流(文本文件读取方式一)
-day18-11-IO流(文本文件读取方式二)
-day18-12-IO流(文本文件读取练习)
-day18-13-IO流(拷贝文本文件)
-day18-14-IO流(拷贝文本文件图例)
+day18-06-IO流(概述)。
+day18-07-IO流(FileWriter)。
+day18-08-IO流(IO异常处理方式)。
+day18-09-IO流(文件的续写)。
+day18-10-IO流(文本文件读取方式一)。
+day18-11-IO流(文本文件读取方式二)。
+day18-12-IO流(文本文件读取练习)。
+day18-13-IO流(拷贝文本文件)。
+day18-14-IO流(拷贝文本文件图例)。
 
 
 
 day19-01-IO流(BufferedWriter) 230
-day19-02-IO流(BufferedReader)
-day19-03-IO流(通过缓冲区复制文本文件)
-day19-04-IO流(readLine的原理图例)
-day19-05-IO流(MyBufferedReader)
-day19-06-IO流(装饰设计模式)
-day19-07-IO流(装饰和继承的区别)
-day19-08-IO流(自定义装饰类)
+day19-02-IO流(BufferedReader)。
+day19-03-IO流(通过缓冲区复制文本文件)。
+day19-04-IO流(readLine的原理图例)。
+day19-05-IO流(MyBufferedReader)。
+day19-06-IO流(装饰设计模式)。
+day19-07-IO流(装饰和继承的区别)。
+day19-08-IO流(自定义装饰类)。
 day19-09-IO流(LineNumberReader)
 day19-10-IO流(MyineNumberReader)
 day19-11-IO流(字节流File读写操作) 240
