@@ -290,26 +290,26 @@ day19-05-IO流(MyBufferedReader)。
 day19-06-IO流(装饰设计模式)。
 day19-07-IO流(装饰和继承的区别)。
 day19-08-IO流(自定义装饰类)。
-day19-09-IO流(LineNumberReader)
-day19-10-IO流(MyineNumberReader)
+day19-09-IO流(LineNumberReader)。
+day19-10-IO流(MyineNumberReader)。
 day19-11-IO流(字节流File读写操作) 240
-day19-12-IO流(拷贝图片)
-day19-13-IO流(字节流的缓冲区)
-day19-14-IO流(自定义字节流的缓冲区-read和write的特点)
-day19-15-IO流(读取键盘录入)
-day19-16-IO流(读取转换流)
-day19-17-IO流(写入转换流)
-day19-18-IO流(流操作规律-1)
-day19-19-IO流(流操作规律-2)
-day19-20-IO流(改变标准输入输出设备)
+day19-12-IO流(拷贝图片)。
+day19-13-IO流(字节流的缓冲区)。
+day19-14-IO流(自定义字节流的缓冲区-read和write的特点)。
+day19-15-IO流(读取键盘录入)。
+day19-16-IO流(读取转换流)。
+day19-17-IO流(写入转换流)。
+day19-18-IO流(流操作规律-1)。
+day19-19-IO流(流操作规律-2)。
+day19-20-IO流(改变标准输入输出设备)。
 day19-21-IO流(异常的日志信息) 250
-day19-22-IO流(系统信息)
+day19-22-IO流(系统信息)。
 
 
 
-day20-01-IO流(File概述)
-day20-02-IO流(File对象功能-创建和删除)
-day20-03-IO流(File对象功能-判断)
+day20-01-IO流(File概述)。
+day20-02-IO流(File对象功能-创建和删除)。
+day20-03-IO流(File对象功能-判断)。
 day20-04-IO流(File对象功能-获取)
 day20-05-IO流(File对象功能-文件列表)
 day20-06-IO流(File对象功能-文件列表2)
