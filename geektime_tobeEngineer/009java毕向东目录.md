@@ -310,27 +310,27 @@ day19-22-IO流(系统信息)。
 day20-01-IO流(File概述)。
 day20-02-IO流(File对象功能-创建和删除)。
 day20-03-IO流(File对象功能-判断)。
-day20-04-IO流(File对象功能-获取)
-day20-05-IO流(File对象功能-文件列表)
-day20-06-IO流(File对象功能-文件列表2)
-day20-07-IO流(列出目录下所有内容-递归)
-day20-08-IO流(列出目录下所有内容-带层次)
+day20-04-IO流(File对象功能-获取)。
+day20-05-IO流(File对象功能-文件列表)256
+day20-06-IO流(File对象功能-文件列表2)。
+day20-07-IO流(列出目录下所有内容-递归)。
+day20-08-IO流(列出目录下所有内容-带层次)。
 day20-09-IO流(删除带内容的目录) 260
-day20-10-IO流(创建java文件列表)
-day20-11-IO流(Properties简述)
-day20-12-IO流(Properties存取)
-day20-13-IO流(Properties存取配置文件)
-day20-14-IO流(Properties练习)
-day20-15-IO流(PrintWriter)
-day20-16-IO流(合并流)
-day20-17-IO流(切割文件)
+day20-10-IO流(创建java文件列表)。
+day20-11-IO流(Properties简述)。
+day20-12-IO流(Properties存取)。
+day20-13-IO流(Properties存取配置文件)。
+day20-14-IO流(Properties练习)。
+day20-15-IO流(PrintWriter)。
+day20-16-IO流(合并流)。
+day20-17-IO流(切割文件)。
 
 
 
-day21-01-IO流(对象的序列化)
+day21-01-IO流(对象的序列化)。
 day21-02-IO流(管道流) 270
-day21-03-IO流(RandomAccessFile) 271
-day21-04-IO流(操作基本数据类型的流对象DataStream)
+day21-03-IO流(RandomAccessFile)。
+day21-04-IO流(操作基本数据类型的流对象DataStream)。
 day21-05-IO流(ByteArrayStream)
 day21-06-IO流(转换流的字符编码)
 day21-07-字符编码
