@@ -331,15 +331,15 @@ day21-01-IO流(对象的序列化)。
 day21-02-IO流(管道流) 270
 day21-03-IO流(RandomAccessFile)。
 day21-04-IO流(操作基本数据类型的流对象DataStream)。
-day21-05-IO流(ByteArrayStream)
-day21-06-IO流(转换流的字符编码)
-day21-07-字符编码
-day21-08-字符编码-联通
-day21-09-练习
+day21-05-IO流(ByteArrayStream)。
+day21-06-IO流(转换流的字符编码)。
+day21-07-字符编码。
+day21-08-字符编码-联通。
+day21-09-练习。
 
 
 
-day22-01-GUI(概述)
+day22-01-GUI(概述)。
 day22-02-GUI(布局)
 day22-03-GUI(Frame) 280
 day22-04-GUI(事件监听机制)
