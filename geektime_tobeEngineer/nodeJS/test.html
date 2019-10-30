@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+
+<title>鼠标移入时，改变字体的背景色，移出时，还原默认的背景色。</title>
+
+<style>
+
+ .xuexi{width:200px;height:120px;background:#abcdef;border:1px solid green;}
+
+</style>
+
+<script>
+
+   function aixuexi(){
+
+    var woaixuexi=document.getElementById("woaixuexi");
+
+    woaixuexi.style.background="yellowgreen";
+
+  }
+
+  function xuexi(){
+
+   var xuexi=document.getElementById("woaixuexi");
+
+   xuexi.style.background="#abcdef";
+
+ }
+
+</script>
+
+</head>
+
+<body>
+
+  <div id="woaixuexi" onmouseover="aixuexi();" onmouseout="xuexi();" class="xuexi"></div>
+
+</body>
+
+</html>
