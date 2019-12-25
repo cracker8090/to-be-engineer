@@ -626,6 +626,270 @@ layout：在上面描述仓库的时候，提到他们有统一的布局。Maven
 
 
 
+### 基本实例介绍
+
+
+
+### 常用注解
+
+SpringBoot的核心注解@SpringBootApplication以及run方法，理解下springBoot为什么不需要XML，达到零配置。<https://juejin.im/post/5ce3a27ce51d455d6d535769> 
+
+
+
+1.@SpringBootApplication  等同于@ComponentScan+@Configuration+@EnableAutoConfiguration
+
+2.@RestController 等同于@Controller+@ResponseBody
+
+3.@Autowired
+
+#### 1.@SpringBootApplication  
+
+等同于@ComponentScan+@Configuration+@EnableAutoConfiguration详解
+
+在了解@ComponentScan之前，我们先了解下Spring，Spring是一个依赖注入(dependency injection)框架,所有的内容都是关于bean的定义及其依赖关系。定义Spring Beans的第一步是使用正确的注解@Component或@Service或@Repository或@Controller等这些注解的类，Spring就会把他们注册成为Bean。
+
+##### 1.1 @ComponentScan
+
+对于@ComponentScan来说不仅可以把以上的@Component或@Service或@Repository或@Controller等这些注解的类注册成为Bean，包括带有@Configuration类。
+
+```java
+package com.tydic.springboot.springbootdemo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+
+@SpringBootApplication
+public class SpringbootDemo {
+
+public static void main(String[] args) {
+    ApplicationContext applicationContext = 
+            SpringApplication.run(SpringbootIn10StepsApplication.class, args);
+ 
+    for (String name : applicationContext.getBeanDefinitionNames()) {
+        System.out.println(name);
+    }
+}
+```
+
+类 SpringbootDemo 在com.tydic.springboot.springbootdemo包下，这个类使用了@SpringBootApplication注解，该注解定义了Spring将自动扫描包com.tydic.springboot.springbootdemo及其子包下的带有@Service,@Repository等注解的类。
+但假如你一个类定义在包com.tydic.springboot.other下，那么你的启动类和你新建的这个新包不属于同级包及其子包,这个时候我们的@ComponentScan就会起到作用了。
+
+定义@CoponentScan(“com.tydic.springboot.other”)
+
+这么做扫描的范围扩大到整个父包com.tydic.springboot.springbootdemo
+
+
+
+```java
+package com.tydic.springboot.springbootdemo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
+
+@ComponentScan(basePackages = "com.tydic.other")
+@SpringBootApplication
+public class SpringbootDemo {
+
+public static void main(String[] args) {
+    ApplicationContext applicationContext = 
+            SpringApplication.run(SpringbootIn10StepsApplication.class, args);
+ 
+    for (String name : applicationContext.getBeanDefinitionNames()) {
+        System.out.println(name);
+    }
+}
+```
+
+总之一句话：ComponentScan做的事情就是告诉Spring从哪里找到bean
+
+##### 1.2 @Configuration  
+
+SpringBoot推荐使用java代码的形式申明注册bean，@Configuration注解可以用java代码的形式实现spring中xml配置文件配置的效果。所以@Configuration这个注解等同于spring的xml配置文件。
+
+能够去注册一些额外的Bean，并且导入一些额外的配置。那@Configuration还有一个作用就是把该类变成一个配置类，不需要额外的XML进行配置。所以@SpringBootConfiguration就相当于@Configuration。
+
+###### 1.2.1通过java代码注册bean
+
+```java
+@Configuration
+public class TestMybaitsConf {
+@Bean
+public DataSource dataSource() {
+    ComboPooledDataSource dataSource = new ComboPooledDataSource();
+    try {
+        dataSource.setDriverClass("com.mysql.jdbc.Driver");
+        dataSource.setJdbcUrl("jdbc:mysql://localhost/CMX?useUnicode=true&amp;characterEncoding=utf-8");
+        dataSource.setUser("root");
+        dataSource.setPassword("123456");
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+    return dataSource;
+}
+ 
+@Bean
+public SqlSessionFactory sqlSessionFactory(DataSource dataSource) {
+    SqlSessionFactory factory = null;
+    SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
+    bean.setDataSource(dataSource);
+    ResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+    bean.setConfigLocation(resolver.getResource("classpath:mybatis.xml"));
+    try {
+        factory = bean.getObject();
+    } catch (Exception e) {
+        throw new RuntimeException(e);
+    }
+    return factory;
+}
+ 
+@Bean
+public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+    return new SqlSessionTemplate(sqlSessionFactory);
+}
+ 
+@Bean
+public PlatformTransactionManager transactionManager(DataSource dataSource) {
+    return new DataSourceTransactionManager(dataSource);
+}
+```
+
+###### 1.2.2使用xml配置bean
+
+```java
+@Configuration
+@ImportResource("classpath:spring-mybatis.xml")
+public class TestMybaitsConf {
+}
+```
+
+spring-mybatis.xml :
+
+```xml
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:jee="http://www.springframework.org/schema/jee" xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/mvc  http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/jee  http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+        http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context  http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+ 
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://192.168.100.25:6660/TXSMS?useUnicode=true&amp;characterEncoding=utf-8"></property>
+        <property name="user" value="root"></property>
+        <property name="password" value="123456"></property>
+    </bean>
+ 
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        <property name="configLocation" value="classpath:mybatis.xml"></property>
+    </bean>
+ 
+    <bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg index="0" ref="sqlSessionFactory"></constructor-arg>
+    </bean>
+ 
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+ 
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+</beans>
+```
+
+总结：两种注册bean的效果完全一样，但springboot推荐使用1.2.1中的方式，使用java代码注册bean
+
+##### 1.3 @EnableAutoConfiguration 
+
+自动配置，此注释自动载入应用程序所需的所有Bean——这依赖于Spring Boot在类路径中的查找，这个注释告诉SpringBoot“猜”你将如何想配置Spring,基于你已经添加jar依赖项。如果spring-boot-starter-web已经添加           Tomcat和Spring MVC,这个注释自动将假设您正在开发一个web应用程序并添加相应的spring设置。
+
+#### 2.@RestController 
+
+等同于@Controller+@ResponseBody 表示这是个控制器bean,并且是将函数的返回值直 接填入HTTP响应体中,是REST风格的控制器。
+
+```java
+@Controller
+public class User1MapperController {
+ 
+    @ResponseBody
+    @RequestMapping("/addUser1")
+    public String addUser1(String name,Integer age){
+        user1Mapper.addUser1(name,age);
+        return "成功。。。。";
+    }
+}
+```
+
+等同于
+
+```java
+@RestController
+public class User1MapperController {
+ 
+    @RequestMapping("/addUser1")
+    public String addUser1(String name,Integer age){
+        user1Mapper.addUser1(name,age);
+        return "成功。。。。";
+    }
+}
+```
+
+#### 3.@Autowired 
+
+自动导入依赖的bean(通过@Autowired注入spring管理的bean)
+
+```java
+@Controller
+public class User1MapperController {
+ 
+    @Autowired
+    private User1Mapper user1Mapper;
+ 
+    @Autowired
+    private User2Mapper user2Mapper;
+ 
+    @ResponseBody
+    @RequestMapping("/addUser1")
+    public String addUser1(String name,Integer age){
+        user1Mapper.addUser1(name,age);
+        return "成功。。。。";
+    }
+ 
+    @ResponseBody
+    @RequestMapping("/addUser2")
+    public String addUser2(String name,Integer age){
+        user2Mapper.addUser2(name,age);
+        return "成功。。。!!";
+    }
+ 
+}
+```
+
+
+
+spring的bean的加载过程，解析springIOC加载过程。如果你看过Spring源码的话 ，应该知道这些方法都是做什么的。现在我们不关心其他的，我们来看一个方法叫做 onRefresh();方法。
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
