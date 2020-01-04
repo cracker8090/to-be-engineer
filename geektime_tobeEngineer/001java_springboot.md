@@ -880,6 +880,108 @@ spring的bean的加载过程，解析springIOC加载过程。如果你看过Spri
 
 
 
+# spring实战
+
+spring框架用以简化JAVAEE应用程序的开发，spring是一个模块化的框架。本书包含许多spring和EJB的比较。
+
+## 1.介绍spring框架的核心知识
+
+spring容器、依赖注入(dependency injection,DI)和面向切面编程(AOP)，也就是spring框架的核心
+
+第一章概要介绍spring，包括DI和AOP的一些基本样例。还会了解到spring生态系统的整体情况。
+
+第二章详细介绍DI，展现应用程序中各组件(Bean)如何装配在一起。这包括基于xml装配、基于Java装配以及自动装配。
+
+第三章介绍几种高级装配技术，会告诉读者如何和发挥spring容器最强大的威力。
+
+第四章介绍如何使用spring的AOP来为对象解耦那些对其提供服务的横切性关注点。后面将会使用AOP来提供声明式服务，如事务、安全和缓存。
+
+
+
+
+
+## 2.介绍如何用spring构建web应用程序
+
+第五章介绍使用springMVC基础知识，这就是spring中的基础web框架。读者将会看到如何编写控制器来处理请求，并使用模型数据产生响应。
+
+第六章探讨在spring中可以使用的各种视图技术，包括JSP、Apache Tiles以及Thymeleaf。在控制器工作完成后，数据模型需要使用一个视图来进行渲染。
+
+第七章如何自定义springMVC配置、处理multipart类型的文件上传、处理在控制器中可能出现的异常并且会通过flash属性在请求之间传递数据。
+
+第八章介绍spwingWebFlow（springMVC一个扩展），能够开发会话式的web应用程序。会学会如何构建引导完成特定流程的web应用程序。
+
+第九章如何使用springSecurity为自己的应用程序web层实现安全性。
+
+
+
+
+
+
+
+## 3.介绍如何在应用程序的后端使用spring
+
+关注于如何处理和持久化数据
+
+第十章介绍如何使用spring对JDBC的抽象实现关系型数据库中的数据持久化。
+
+第十一章另一个角度介绍数据持久化，即使用Java持久化API(JPA)存储关系型数据库中的数据。
+
+第十二章介绍如何将spring与非关系型数据库结合使用，如MongDB和Neo4j。
+
+第十三章介绍spring对声明式缓存的支持。
+
+第十四章回到springSecurity，介绍如何通过AOP将安全性应用到方法级别。
+
+
+
+
+
+## 4.如何使用spring与其他应用和服务进行集成
+
+第十五章如何创建与使用远程服务，包括RMI、Hessian、Burlap以及基于SOAP的服务。
+
+第十六章回到SpringMVC，如何创建RESTful服务，这里使用的编程模型跟第五章描述一致。
+
+第十七章探讨Spring对异步消息的支持，本章将会包括Java消息服务(Java Message Service JMS)以及高级消息队列协议（AMOP）。
+
+第十八章异步消息花样后，如何将spring与WebSocket和STOMP结合起来，实现服务的与客户端直接异步通信。
+
+第十九章如何使用spring发生email。
+
+第二十章关注于spring对Java管理扩展（JMX）功能的支持，借助这项功能可以对spring应用程序监控和修改运行配置。
+
+第二十一章一个全新并且会改变游戏规则的spring使用方式（SpringBoot），如何将spring应用样板式的配置移除掉，更关注于业务功能。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# springboot实战
+
+
+
+以大量示例讲解了 Spring Boot在各类情境中的应用，内容涵盖起步依赖、Spring Boot CLI、 Groovy、 Grails、 Actuator
+
+
+
+
+
+
+
+
+
+
+
 
 
 
