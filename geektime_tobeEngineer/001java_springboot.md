@@ -956,6 +956,46 @@ spring容器、依赖注入(dependency injection,DI)和面向切面编程(AOP)�
 
 
 
+组件扫描：spring会自动发现应用上下文中创建的bean
+
+自动装配：spring自动满足bean之间的依赖
+
+
+
+## 注解
+
+
+
+@Component
+
+该类会作为组件。并告知spring要为这个类创建bean。@Component("lonelyHeartsClub")自定义Bean ID。Spring支持将@Named作为@Component注解的替代方案。有些细微差别。
+
+组件扫描默认不会启用，需要显式配置一下spring
+
+@ComponentScan
+
+没有显式声明任何bean，这个注解能够在spring中启用组件扫描，没有其他配置，默认会扫描与配置类相同的包。
+
+可以使用XML来启用组件扫描<context:component-scan> 更多会使用基于java的配置
+
+@RunWith(SpringJUint4ClassRunner.class)
+
+单元测试使用SpringJUint4ClassRunner.class以便在测试开始自动创建Spring的应用上下文
+
+@ContextConfiguration(classes=CDPlayerConfig.class)
+
+告诉它需要在CDPlayerConfig中加载配置，因为CDPlayerConfig类中包含@ComponentScan，应该包含某bean。
+
+@Autowired
+
+以便将某bean注入到代码中
+
+
+
+
+
+
+
 
 
 
