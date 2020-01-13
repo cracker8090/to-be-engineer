@@ -882,11 +882,13 @@ spring的bean的加载过程，解析springIOC加载过程。如果你看过Spri
 
 # spring实战
 
+[笔记1](https://www.jianshu.com/p/c516b5784d6b) [笔记2](https://blog.csdn.net/bruce_6/category_9265720.html) 
+
 spring框架用以简化JAVAEE应用程序的开发，spring是一个模块化的框架。本书包含许多spring和EJB的比较。
 
 ## 1.介绍spring框架的核心知识
 
-spring容器、依赖注入(dependency injection,DI)和面向切面编程(AOP)，也就是spring框架的核心
+spring容器、依赖注入(dependency injection,DI)和面向切面编程(AOP)，也就是spring框架的核心。IOC，AOP，MVC，数据库（sql、nosql），rpc，消息，WebSocket，最后两章JMX和spring boot（水分比较大）。
 
 第一章概要介绍spring，包括DI和AOP的一些基本样例。还会了解到spring生态系统的整体情况。
 
@@ -974,7 +976,7 @@ spring容器、依赖注入(dependency injection,DI)和面向切面编程(AOP)�
 
 @ComponentScan
 
-没有显式声明任何bean，这个注解能够在spring中启用组件扫描，没有其他配置，默认会扫描与配置类相同的包。
+没有显式声明任何bean，这个注解能够在spring中启用组件扫描，没有其他配置，默认会扫描与配置类相同的包。如果设置扫描的基础包
 
 可以使用XML来启用组件扫描<context:component-scan> 更多会使用基于java的配置
 
@@ -988,7 +990,7 @@ spring容器、依赖注入(dependency injection,DI)和面向切面编程(AOP)�
 
 @Autowired
 
-以便将某bean注入到代码中
+以便将某bean注入到代码中。
 
 
 
