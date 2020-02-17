@@ -81,6 +81,33 @@ Docker CE 的安装请参考官方文档。
  sudo usermod -aG docker $USER
 ```
 
+## 3.CentOS安装docker
+
+```
+uname -r #Docker 要求 CentOS 系统的内核版本高于 3.10
+yum update
+yum remove docker  docker-common docker-selinux docker-engine #卸载旧版本
+yum install -y yum-utils device-mapper-persistent-data lvm2 #安装需要的软件包， yum-util 提供yum-config-manager功能，另外两个是devicemapper驱动依赖的
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo 设置yum源
+yum list docker-ce --showduplicates | sort -r #可以查看所有仓库中所有docker版本，并选择特定版本安装
+yum install --nobest docker-ce -y 
+yum install <FQPN>  # 例如：sudo yum install docker-ce-17.12.0.ce
+启动并开机自启：
+systemctl start docker
+systemctl enable docker
+docker version
+rm -rf /var/lib/docker   #删除以前已有的镜像和容器,非必要
+rm -rf /var/run/docker 
+docker run hello-word 校验
+docker pull ubuntu
+docker run -it ubuntu
+
+```
+
+
+
+
+
 ## Configure Docker to start on boot
 
 ```
@@ -295,6 +322,8 @@ Compose文件是一个定义服务，网络和卷的YAML文件。 Compose文件�
 
 
 cat json | python -mjson.tool
+
+
 
 
 
