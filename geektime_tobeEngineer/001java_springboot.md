@@ -1,5 +1,7 @@
 
 
+Swapsy
+
 	需求变化快和用户群体庞大，在这种情况下，如何从系统架构的角度出发，构建灵活、易扩展的系统，快速应对需求的变化；同时，随着用户的增加，如何保证系统的可伸缩性、高可用性，成为系统架构面临的挑战。分而治之的思想被提了出来，于是我们从单独架构发展到分布式架构，又从分布式架构发展到 SOA 架构，服务不断的被拆分和分解，粒度也越来越小，直到微服务架构的诞生。
 	
 	微服务架构是 SOA 架构的传承，但一个最本质的区别就在于微服务是真正的分布式的、去中心化的。把所有的“思考”逻辑包括路由、消息解析等放在服务内部，去掉一个大一统的 ESB，服务间轻通信，是比 SOA 更彻底的拆分。微服务架构强调的重点是业务系统需要彻底的组件化和服务化，原有的单个业务系统会拆分为多个可以独立开发，设计，运行和运维的小应用，这些小应用之间通过服务完成交互和集成。
@@ -841,6 +843,16 @@ public class User1MapperController {
         return "成功。。。。";
     }
 }
+
+對於控制器層，如果只使用@Controller註解，會報500，即controller必須配合一個模板來使用：
+使用spring官方的一個模板：
+<dependency>
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+在resources下面的templates資料夾下建立index.html:
+<h1>hello Spring Boot!</h1>
+https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/305614/ restful参数
 ```
 
 #### 3.@Autowired 
@@ -877,6 +889,28 @@ public class User1MapperController {
 
 
 spring的bean的加载过程，解析springIOC加载过程。如果你看过Spring源码的话 ，应该知道这些方法都是做什么的。现在我们不关心其他的，我们来看一个方法叫做 onRefresh();方法。
+
+#### 4.@Service
+
+SpringBoot中Service自动注入很方便，例：
+
+Service.class（接口类）
+
+ServiceImpl.class（实现类）
+
+Controller.class（使用类）
+
+用以上三个类来说一下自动注入：
+
+单项目：分别ServiceImpl头上@Service，Controller中Service对象@Autowired即可享用；
+
+解决办法@SpringBootApplictaion（scanBasePackages="com.example"）
+
+核心就是：Service 及 ServiceImpl均需在com.example包下
+
+@ComponentScan="com.example"）也是可以的，因为前者@SpringBootApplication已经包含@ComponentScan；
+
+
 
 
 
@@ -1096,6 +1130,605 @@ java development kit，JDKjava开发工具包
 JDK提供给开发人员使用，其中保护开发工具，也包括了JRE。其中开发工具：编译工具javac.exe，打包工具jar.exe
 
 JDK开发完成的程序交给jre去运行。
+
+
+
+## springbootdemo
+
+
+
+springboot项目如何测试、联调和打包投产均已经介绍完，以后可以找时间研究一下springboot的自动化运维，以及spring boot 和docker相结合的使用。
+
+
+
+
+
+
+
+
+
+
+
+### 单元测试
+
+[springboot单元测试例子](https://blog.csdn.net/qq_33206732/article/details/79242107) 
+
+
+
+主要是service和API（controller）的单元测试
+
+
+
+
+
+### 集成测试
+
+整体开发完成之后进入集成测试，spring boot项目的启动入口在 Application类中，直接运行run方法就可以启动项目，但是在调试的过程中我们肯定需要不断的去调试代码，如果每修改一次代码就需要手动重启一次服务就很麻烦，spring boot非常贴心的给出了热部署的支持，很方便在web项目中调试使用。
+
+pom需要添加以下的配置：
+
+```yaml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <optional>true</optional>
+    </dependency>
+</dependencies>
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+                <fork>true</fork>
+            </configuration>
+        </plugin>
+</plugins>
+</build>
+```
+
+添加以上配置后，项目就支持了热部署，非常方便集成测试。
+
+一种是打包成jar包直接执行，另一种是打包成war包放到tomcat服务器下。
+
+mvn clean package
+
+或者执行下面的命令
+
+排除测试代码后进行打包
+
+mvn clean package  -Dmaven.test.skip=true
+
+命名一般是 项目名+版本号.jar
+
+也可以在启动的时候选择读取不同的配置文件
+
+```
+java -jar app.jar --spring.profiles.active=dev
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 源码学习
+
+[学习源码半年，拿蚂蚁Offer，分享艰难面试](https://www.jianshu.com/p/11578fd6e272) 
+
+<https://www.cnblogs.com/ysocean/> 
+
+
+
+基本的HashMap 和 ConcurrentHashMap LinkedHashMap
+
+线程池的源码实现
+
+阻塞队列BlockingQueue相关实现
+
+ReentrantLock 实现，以及其内部同步器Sync的实现原理
+
+Future的实现原理
+
+AtomicXXX是如何运转的
+
+**技术面**
+
+项目中的监控：那个监控指标常见的有哪些？
+
+微服务涉及到的技术以及需要注意的问题有哪些？
+
+注册中心你了解了哪些？
+
+consul 的可靠性你了解吗？
+
+consul 的机制你有没有具体深入过？有没有和其他的注册中心对比过？
+
+项目用 Spring 比较多，有没有了解 Spring 的原理？AOP 和 IOC 的原理
+
+Spring Boot除了自动配置，相比传统的 Spring 有什么其他的区别？
+
+Spring Cloud 有了解多少？
+
+Spring Bean 的生命周期
+
+HashMap 和 hashTable 区别？
+
+Object 的 hashcode 方法重写了，equals 方法要不要改？
+
+Hashmap 线程不安全的出现场景
+
+线上服务 CPU 很高该怎么做？有哪些措施可以找到问题
+
+JDK 中有哪几个线程池？顺带把线程池讲了个遍
+
+SQL 优化的常见方法有哪些
+
+SQL 索引的顺序，字段的顺序
+
+查看 SQL 是不是使用了索引？（有什么工具）
+
+TCP 和 UDP 的区别？TCP 数据传输过程中怎么做到可靠的？
+
+说下你知道的排序算法吧
+
+查找一个数组的中位数？
+
+
+
+
+
+**看源码的几个好处：**
+
+从源码中学习如何性能优化、设计模式等
+
+深入源码，才能了解真相
+
+了解源码，才能更好的解决问题
+
+你懂源码，面试官更懂你
+
+**源码怎么读，才比较有效率？**
+
+从问题出发，带着问题看源码
+
+面向debug学源码
+
+写写写，做笔记
+
+
+
+### hashmap源码
+
+#### put
+
+```java
+  public V put(K key, V value) {
+        return putVal(hash(key), key, value, false, true);
+    }
+    
+    final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
+                   boolean evict) {
+        Node<K,V>[] tab; Node<K,V> p; int n, i;
+        if ((tab = table) == null || (n = tab.length) == 0)
+             //如果table尚未初始化，则此处进行初始化数组，并赋值初始容量，重新计算阈值
+            n = (tab = resize()).length;
+        if ((p = tab[i = (n - 1) & hash]) == null)
+            //通过hash找到下标，如果hash值指定的位置数据为空，则直接将数据存放进去
+            tab[i] = newNode(hash, key, value, null);
+        else {
+            //如果通过hash找到的位置有数据，发生碰撞
+            Node<K,V> e; K k;
+            if (p.hash == hash &&
+                ((k = p.key) == key || (key != null && key.equals(k))))
+                //如果需要插入的key和当前hash值指定下标的key一样，先将e数组中已有的数据
+                e = p;
+            else if (p instanceof TreeNode)
+                //如果此时桶中数据类型为 treeNode，使用红黑树进行插入
+                e = ((TreeNode<K,V>)p).putTreeVal(this, tab, hash, key, value);
+            else {
+                //此时桶中数据类型为链表
+                // 进行循环
+                for (int binCount = 0; ; ++binCount) {
+                    if ((e = p.next) == null) {
+                        //如果链表中没有最新插入的节点，将新放入的数据放到链表的末尾
+                        p.next = newNode(hash, key, value, null);
+
+                        //如果链表过长，达到树化阈值，将链表转化成红黑树
+                        if (binCount >= TREEIFY_THRESHOLD - 1) // -1 for 1st
+                            treeifyBin(tab, hash);
+                        break;
+                    }
+                    //如果链表中有新插入的节点位置数据不为空，则此时e 赋值为节点的值，跳出循环
+                    if (e.hash == hash &&
+                        ((k = e.key) == key || (key != null && key.equals(k))))
+                        break;
+                    p = e;
+                }
+            }
+
+            //经过上面的循环后，如果e不为空，则说明上面插入的值已经存在于当前的hashMap中，那么更新指定位置的键值对
+            if (e != null) { // existing mapping for key
+                V oldValue = e.value;
+                if (!onlyIfAbsent || oldValue == null)
+                    e.value = value;
+                afterNodeAccess(e);
+                return oldValue;
+            }
+        }
+        ++modCount;
+        //如果此时hashMap size大于阈值，则进行扩容
+        if (++size > threshold)
+            resize();
+        afterNodeInsertion(evict);
+        return null;
+    }
+```
+
+从代码看，put方法分为三种情况：
+
+- table尚未初始化，对数据进行初始化
+- table已经初始化，且通过hash算法找到下标所在的位置数据为空,直接将数据存放到指定位置
+- table已经初始化，且通过hash算法找到下标所在的位置数据不为空，发生hash冲突（碰撞），发生碰撞后，会执行以下操作：
+  - 判断插入的key如果等于当前位置的key的话，将 e 指向该键值对
+  - 如果此时桶中数据类型为 treeNode，使用红黑树进行插入
+  - 如果是链表，则进行循环判断， 如果链表中包含该节点，跳出循环，如果链表中不包含该节点，则把该节点插入到链表末尾，同时，如果链表长度超过树化阈值（TREEIFY_THRESHOLD）且table容量超过最小树化容量（MIN_TREEIFY_CAPACITY），则进行链表转红黑树（由于table容量越小，越容易发生hash冲突，因此在table容量<MIN_TREEIFY_CAPACITY 的时候，如果链表长度>TREEIFY_THRESHOLD,会优先选择扩容，否则会进行链表转红黑树操作）
+
+```java
+final Node<K,V>[] resize() {
+
+        Node<K,V>[] oldTab = table;
+        int oldCap = (oldTab == null) ? 0 : oldTab.length;
+        int oldThr = threshold;
+        int newCap, newThr = 0;
+
+        //1、table已经初始化，且容量 > 0
+        if (oldCap > 0) {
+            if (oldCap >= MAXIMUM_CAPACITY) {
+                //如果旧的容量已近达到最大值，则不再扩容，阈值直接设置为最大值
+                threshold = Integer.MAX_VALUE;
+                return oldTab;
+            }
+            else if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&
+                     oldCap >= DEFAULT_INITIAL_CAPACITY)
+                //如果旧的容量不小于默认的初始容量，则进行扩容，容量扩张为原来的二倍
+                newThr = oldThr << 1; // double threshold
+        }
+        //2、阈值大于0 threshold 使用 threshold 变量暂时保存 initialCapacity 参数的值
+        else if (oldThr > 0) // initial capacity was placed in threshold
+            newCap = oldThr;
+        //3 threshold 和 table 皆未初始化情况，此处即为首次进行初始化
+        //也就在此处解释了构造方法中没有对threshold 和 初始容量进行赋值的问题
+        else {               // zero initial threshold signifies using defaults
+            //如果阈值为零，表示使用默认的初始化值
+            //这种情况在调用无参构造的时候会出现，此时使用默认的容量和阈值
+            newCap = DEFAULT_INITIAL_CAPACITY;
+            //此处阈值即为 threshold=initialCapacity*loadFactor
+            newThr = (int)(DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY);
+        }
+        // newThr 为 0 时，按阈值计算公式进行计算，容量*负载因子
+        if (newThr == 0) {
+            float ft = (float)newCap * loadFactor;
+            newThr = (newCap < MAXIMUM_CAPACITY && ft < (float)MAXIMUM_CAPACITY ?
+                      (int)ft : Integer.MAX_VALUE);
+        }
+
+        //更新阈值
+        threshold = newThr;
+
+        //更新数组桶
+        @SuppressWarnings({"rawtypes","unchecked"})
+            Node<K,V>[] newTab = (Node<K,V>[])new Node[newCap];
+        table = newTab;
+
+        //如果之前的数组桶里面已经存在数据，由于table容量发生变化，hash值也会发生变化，需要重新计算下标
+        if (oldTab != null) {
+            for (int j = 0; j < oldCap; ++j) {
+                Node<K,V> e;
+                //如果指定下标下有数据
+                if ((e = oldTab[j]) != null) {
+                    //1、将指定下标数据置空
+                    oldTab[j] = null;
+                    //2、指定下标只有一个数据
+                    if (e.next == null)
+                        //直接将数据存放到新计算的hash值下标下
+                        newTab[e.hash & (newCap - 1)] = e;
+                    //3、如果是TreeNode数据结构
+                    else if (e instanceof TreeNode)
+
+                        ((TreeNode<K,V>)e).split(this, newTab, j, oldCap);
+                    //4、对于链表，数据结构
+                    else { // preserve order
+                        //如果是链表，重新计算hash值，根据新的下标重新分组
+                        Node<K,V> loHead = null, loTail = null;
+                        Node<K,V> hiHead = null, hiTail = null;
+                        Node<K,V> next;
+                        do {
+                            next = e.next;
+                            if ((e.hash & oldCap) == 0) {
+                                if (loTail == null)
+                                    loHead = e;
+                                else
+                                    loTail.next = e;
+                                loTail = e;
+                            }
+                            else {
+                                if (hiTail == null)
+                                    hiHead = e;
+                                else
+                                    hiTail.next = e;
+                                hiTail = e;
+                            }
+                        } while ((e = next) != null);
+                        if (loTail != null) {
+                            loTail.next = null;
+                            newTab[j] = loHead;
+                        }
+                        if (hiTail != null) {
+                            hiTail.next = null;
+                            newTab[j + oldCap] = hiHead;
+                        }
+                    }
+                }
+            }
+        }
+        return newTab;
+    }
+```
+
+resize方法逻辑比较复杂，需要静下心来一步步的分析，但是总的下来，分为以下几步：
+
+- 首先先判断当前table是否进行过初始化，如果没有进行过初始化，此处就解决了调用无参构造方法时候，threshold和initialCapacity 未初始化的问题，如果已经初始化过了，则进行扩容，容量为原来的二倍
+- 扩容后创建新的table，并对所有的数据进行遍历 
+  - 如果新计算的位置数据为空，则直接插入
+  - 如果新计算的位置为链表，则通过hash算法重新计算下标，对链表进行分组
+  - 如果是红黑树，则需要进行拆分操作
+
+**PUT操作** 
+
+​	①、判断键值对数组 table 是否为空或为null，否则执行resize()进行扩容；
+
+　　②、根据键值key计算hash值得到插入的数组索引i，如果table[i]==null，直接新建节点添加，转向⑥，如果table[i]不为空，转向③；
+
+　　③、判断table[i]的首个元素是否和key一样，如果相同直接覆盖value，否则转向④，这里的相同指的是hashCode以及equals；
+
+　　④、判断table[i] 是否为treeNode，即table[i] 是否是红黑树，如果是红黑树，则直接在树中插入键值对，否则转向⑤；
+
+　　⑤、遍历table[i]，判断链表长度是否大于8，大于8的话把链表转换为红黑树，在红黑树中执行插入操作，否则进行链表的插入操作；遍历过程中若发现key已经存在直接覆盖value即可；
+
+　　⑥、插入成功后，判断实际存在的键值对数量size是否超过了最大容量threshold，如果超过，进行扩容。
+
+　　⑦、如果新插入的key不存在，则返回null，如果新插入的key存在，则返回原key对应的value值（注意新插入的value会覆盖原value值）
+
+#### get
+
+```java
+    public V get(Object key) {
+        Node<K,V> e;
+        return (e = getNode(hash(key), key)) == null ? null : e.value;
+    }
+    
+    final Node<K,V> getNode(int hash, Object key) {
+        Node<K,V>[] tab; Node<K,V> first, e; int n; K k;
+        if ((tab = table) != null && (n = tab.length) > 0 &&
+            (first = tab[(n - 1) & hash]) != null) {
+
+            //1、根据hash算法找到对应位置的第一个数据，如果是指定的key，则直接返回
+            if (first.hash == hash && // always check first node
+                ((k = first.key) == key || (key != null && key.equals(k))))
+                return first;
+
+            if ((e = first.next) != null) {
+                //如果该节点为红黑树，则通过树进行查找
+                if (first instanceof TreeNode)
+                    return ((TreeNode<K,V>)first).getTreeNode(hash, key);
+                //如果该节点是链表，则遍历查找到数据
+                do {
+                    if (e.hash == hash &&
+                        ((k = e.key) == key || (key != null && key.equals(k))))
+                        return e;
+                } while ((e = e.next) != null);
+            }
+        }
+        return null;
+    }
+```
+
+get方法相对于put来说，逻辑实在是简单太多了
+
+1. 根据hash值查找到指定位置的数据
+2. 校验指定位置第一个节点的数据是key是否为传入的key，如果是直接返回第一个节点，否则继续查找第二个节点
+3. 如果数据是TreeNode（红黑树结构），直接通过红黑树查找节点数据并返回
+4. 如果是链表结构，循环查找所有节点，返回数据
+5. 如果没有找到符合要求的节点，返回null
+
+```
+ hash（key）的源码：这段代码叫做扰动函数
+ static final int hash(Object key) {
+        int h;
+        return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
+    }
+    key.hashCode()，获取key的hashCode值，如果不进行重写的话返回的是根据内存地址得到的一个int值
+key.hashCode() 获取到的hashcode无符号右移16位并和元hashCode进行^ ，这样做的目的是为了让高位与低进行混合，让两者都参与运算，以便让hash值分布更加均匀
+
+取模运算 (n - 1) & hash
+first = tab[(n - 1) & hash]) 
+hash算法中，为了使元素分布的更加均匀，很多都会使用取模运算，在hashMap中并没有使用hash%n这样进行取模运算，而是使用(n - 1) & hash进行代替，原因是在计算机中，&的效率要远高于%；需要注意的是，只有容量为2的n次幂的时候，(n - 1) & hash 才能等效hash%n，这也是hashMap 初始化初始容量时，无论传入任何值，都会通过tableSizeFor(int cap) 方法转化成2的n次幂的原因，这种巧妙的设计真的很令人惊叹；
+至于为什么只有2的n次幂才能这样进行取模运算
+```
+
+#### 遍历元素 
+
+　首先构造一个 HashMap 集合：
+
+```
+1 HashMap<String,Object> map = new HashMap<>();
+2 map.put("A","1");
+3 map.put("B","2");
+4 map.put("C","3");
+```
+
+　　①、分别获取 key 集合和 value 集合。
+
+```
+1 //1、分别获取key和value的集合
+2 for(String key : map.keySet()){
+3     System.out.println(key);
+4 }
+5 for(Object value : map.values()){
+6     System.out.println(value);
+7 }
+```
+
+　　②、获取 key 集合，然后遍历key集合，根据key分别得到相应value
+
+```
+1 //2、获取key集合，然后遍历key，根据key得到 value
+2 Set<String> keySet = map.keySet();
+3 for(String str : keySet){
+4     System.out.println(str+"-"+map.get(str));
+5 }
+```
+
+　　③、得到 Entry 集合，然后遍历 Entry
+
+```
+1 //3、得到 Entry 集合，然后遍历 Entry
+2 Set<Map.Entry<String,Object>> entrySet = map.entrySet();
+3 for(Map.Entry<String,Object> entry : entrySet){
+4     System.out.println(entry.getKey()+"-"+entry.getValue());
+5 }
+```
+
+　　④、迭代
+
+```
+1 //4、迭代
+2 Iterator<Map.Entry<String,Object>> iterator = map.entrySet().iterator();
+3 while(iterator.hasNext()){
+4     Map.Entry<String,Object> mapEntry = iterator.next();
+5     System.out.println(mapEntry.getKey()+"-"+mapEntry.getValue());
+6 }
+```
+
+　　基本上使用第三种方法是性能最好的，
+
+　　第一种遍历方法在我们只需要 key 集合或者只需要 value 集合时使用；
+
+　　第二种方法效率很低，不推荐使用；
+
+　　第四种方法效率也挺好，关键是在遍历的过程中我们可以对集合中的元素进行删除。
+
+[![img](https://segmentfault.com/img/remote/1460000012926732?w=1598&h=756)](http://www.coolblog.xyz/)
+
+19 -> 3 -> 35 -> 7 -> 11 -> 43 -> 59
+
+```
+public class HashMapTest {
+
+    @Test
+    public void testTraversal() {
+        HashMap<Integer, String> map = new HashMap(16);
+        map.put(7, "");
+        map.put(11, "");
+        map.put(43, "");
+        map.put(59, "");
+        map.put(19, "");
+        map.put(3, "");
+        map.put(35, "");
+
+        System.out.println("遍历结果：");
+        for (Integer key : map.keySet()) {
+            System.out.print(key + " -> ");
+        }
+    }
+}
+```
+
+并没有发现红黑树遍历的相关逻辑
+
+
+
+#### 总结
+
+- HashMap 底层数据结构在JDK1.7之前是由数组+链表组成的，1.8之后又加入了红黑树；链表长度小于8的时候，发生Hash冲突后会增加链表的长度，当链表长度大于8的时候，会先判读数组的容量，如果容量小于64会先扩容（原因是数组容量越小，越容易发生碰撞，因此当容量过小的时候，首先要考虑的是扩容），如果容量大于64，则会将链表转化成红黑树以提升效率
+
+- hashMap 的容量是2的n次幂，无论在初始化的时候传入的初始容量是多少，最终都会转化成2的n次幂，这样做的原因是为了在取模运算的时候可以使用&运算符，而不是%取余，可以极大的提上效率，同时也降低hash冲突
+
+- HashMap是非线程安全的，在多线程的操作下会存在异常情况（如形成闭环（1.7），1.8已修复闭环问题，但仍不安全），可以使用HashTable或者ConcurrentHashMap进行代替
+
+
+
+红黑树的转化，查找，删除等操作，有兴趣的可以自己进行学习
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
