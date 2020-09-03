@@ -1,3 +1,4 @@
 .idea
 testify-master
 easyjson
+*.prof
