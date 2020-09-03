@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>测试嵌套template</title>
+</head>
+<body>
+    <h1>测试嵌套template</h1>
+    <hr>
+    {{template "u1.tmpl"}}
+    <hr>
+    {{template "o1.tmpl"}}
+
+
+<div>你好, {{ . }}</div>
+</body>
+</html>
+
+{{define "o1.tmpl"}}
+<o1>
+    <li>吃饭</li>
+    <li>睡觉</li>
+    <li>打豆豆</li>
+</o1>
+{{end}}

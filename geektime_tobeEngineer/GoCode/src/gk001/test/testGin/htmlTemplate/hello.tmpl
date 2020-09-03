@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title>Hello</title>
+</head>
+<body>
+    <p>us1</p>
+    <p>Hello {{ .user1.Name }}</p>
+    <p>年龄： {{ .user1.Age }}</p>
+    <p>性别： {{ .user1.Gender }}</p>
+    <p>ma1</p>
+    <p>Hello {{ .map1.name }}</p>
+    <p>年龄： {{ .map1.age }}</p>
+    <p>性别： {{ .map1.gender }}</p>
+
+{{ $v1 := 100}}
+{{ $age := .user1.Age}}
+    {{/* 去除空格 */}}
+    <p>性别： {{- .map1.gender -}}</p>
+
+    <hr>
+    {{/* if else */}}
+{{ if $v1 }}
+{{ $v1 }}
+{{else}}
+{{end}}
+
+    <hr>
+{{ range $idx,$hobby := .hobby }}
+    <p>{{$idx}} - {{$hobby}}</p>
+{{end}}
+
+    <p>ma1</p>
+    {{with .map1}}
+    <p>Hello {{ .name }}</p>
+    <p>年龄： {{ .age }}</p>
+    <p>性别： {{ .gender }}</p>
+    {{end}}
+
+<hr>
+{{index .hobby 2}}
+</body>
+</html>
