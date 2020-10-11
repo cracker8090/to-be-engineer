@@ -62,9 +62,94 @@ pfs太空竞赛已经进入白热化阶段、前十名矿厂基本没有太大�
 
 
 
+20亿枚 Filecoin发行总量
+
+- Filecoin 基金会5%
+- ICO 投资人（私募+公募）10%
+- Protocol labs（官方团队)15%
+- 矿工（挖矿）70%
 
 
 
+www.ipfs.cn
+
+FILPool矿池是由IPFS中国社区投资孵化的一家专业 Filecoin矿池，其核心技术团队有着超过十年的分布式存储行业开发经验，在Filecoin各个阶段测试网的测试成绩持续处于行业领先地位。
+
+FILPool矿池采用时空云科技独家研发的IPFS深度定制分布式存储服务器“蜘蛛矿机”及分布式存储系统“MineOS”挖矿系统，在Filecoin的挖矿效率、稳定性以及安全性上持续处于行业领先水平。
+
+
+
+Lotus是什么
+
+Lotus守护进程
+
+实现了钱包、矿工、存储证明、时空证明、存储市场、文件检索等一系列功能。
+
+https://docs.lotu.sh/
+
+
+
+https://spec.filecoin.io/
+
+https://docs.filecoin.io/
+
+https://spacerace.filecoin.io/
+
+
+
+filecoin的4种实现技术
+
+- go-filecoin（go）-协议实验室
+
+- lotus（go）-协议实验室
+
+- fuhon（c++）-Soramitsu
+
+- forest（Rust）-Chainsafe
+
+
+
+
+
+存储有效，持续有效
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+![](../../../md_pictures/视频文章发布平台.png)
 
 
 
