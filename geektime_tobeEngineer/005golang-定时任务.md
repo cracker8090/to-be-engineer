@@ -457,15 +457,252 @@ inspect(c.Entries())
 
 
 
+# 定时器问题
 
 
 
+## ticker的值拷贝问题
+
+```go
+func tickerTest1() {
+	ticker := *time.NewTicker(time.Second)
+	count := 0
+	go func() {
+		time.Sleep(3*time.Second)
+		ticker.Stop()
+	}()
+	for range ticker.C {
+		count ++
+		fmt.Println("tickerTest1：", count)
+	}
+}
+
+func tickerTest2() {
+	ticker := time.NewTicker(time.Second)
+	count := 0
+	go func() {
+		time.Sleep(3*time.Second)
+		ticker.Stop()
+	}()
+	for range ticker.C {
+		count ++
+		fmt.Println("tickerTest2：", count)
+	}
+}
+
+	go tickerTest1()
+	tickerTest2()
+```
+
+tickerTest2： 1
+tickerTest1： 1
+tickerTest2： 2
+tickerTest1： 2
+tickerTest2： 3
+tickerTest1： 3
+tickerTest1： 4
+tickerTest1： 5```
+
+故`tmp.C`和`ticker.C`的值是一样的，故`for range ticker.C`是能够接受到值，即本质是`tmp.C`发送的值，因此可以持续输出；而`tmp.r`与`ticker.r`的地址是不一样的。而在在`runtime`包中，发现`stop`的时候有这么一个判断：
+
+```
+if i < 0 || i > last || tb.t[i] != t { //tb.t[i]就是ticker.r的地址，t就是tmp.r的地址
+    return false
+}
+复制代码
+```
+
+关键在于`tb.t[i] != t`，则这个条件肯定为真，即不从最小堆四叉树中移除，相当于没有 `stop`。所以计时器没有停止。
 
 
 
+## ticker.Stop()并不会关闭Channel
+
+```go
+func UseTickerWrong() *time.Ticker {
+	ticker := time.NewTicker(5 * time.Second)
+	go func(ticker *time.Ticker) {
+		for range ticker.C {
+			fmt.Println("Ticker1....")
+		}
+		
+		fmt.Println("Ticker1 Stop")
+	}(ticker)
+	
+	return ticker
+}
+	ticker1 := UseTickerWrong()
+	time.Sleep(20 * time.Second)
+	ticker1.Stop()
+//没有打印Ticker1 Stop
+```
+
+首先，创建`Ticker`的协程并不负责计时，只负责从`Ticker`的管道中获取事件；其次，系统协程只负责定时器计时，向管道中发送事件，并不关心上层协程如何处理事件。即我们在创建timer的时候会构建`runtimeTimer`对象，里面有`sendTime`回调方法及初始化的`channel`。`timerproc`是`golang runtime`的定时扫描器，当发现有任务到期后，进行相应的方法回调。但如果我们在stop里把channel给关闭了，那么`timerproc`有可能就`panic`了。
+
+## 在定时器触发之前，gc不会回收 Timer
+
+```go
+go func() {
+	for {
+		timerC := time.After(2 * time.Second)
+		select {
+		case num := <-ch:
+			fmt.Println("get num is ", num)
+		case <-timerC:
+			fmt.Println("time's up !!!")
+		}
+	}
+}()
+```
+
+每循环一次，`timerC`都是重新创建的，即`timerC`只对一个`select`有效。下次处理时重新计算超时时间，每个操作的处理都是独立的。 若`ch`触发的频道远远高于`timerC`的触发频道，将会导致`timerC`不停地被创建。但由于在定时器触发之前，`gc`是不会对`timerC`进行回收。因此造成了大量的内存浪费（由于`timerC`还在四叉树里被引用着，故不能进行`gc`回收）。
+
+```go
+go func() {
+	idleDuration := 5 * time.Second
+	idleDelay:=time.NewTimer(idleDuration)
+	defer  idleDelay.Stop()
+	for {
+		idleDelay.Reset(idleDuration) //重置定时器
+		select {
+		case num := <-ch:
+			fmt.Println("get num is ", num)
+		case <-idleDelay.C:
+			fmt.Println("time's up !!!")
+		}
+	}
+}()
+```
+
+## 创建的周期性定时器，若不进行主动`stop`，将会导致内存泄漏
+
+使用time.NewTicker() 定时器时，需要使用Stop()方法进行资源释放，否则会产生内存泄漏。
+
+如果调用 time.Stop() 时，timer已过期或已stop，则并不会关闭通道。
+
+创建一个`ticker`，应该紧跟着使用`defer ticker.Stop()`语句，当函数退出时自动从最小堆四叉树中移除。
+
+```go
+func  run() {
+	timeout := time.NewTicker(p.Timeout)
+	defer timeout.Stop()  
+	interval := time.NewTicker(p.Interval)
+	defer interval.Stop() 
+	for {
+		select {
+		case <-p.done:       
+			wg.Wait()
+			return
+		case <-timeout.C:   
+			close(p.done)
+			wg.Wait()
+			return
+		case <-interval.C:
+			if p.Count > 0 && p.PacketsSent >= p.Count {
+				continue
+			}
+			err = p.sendICMP(conn)
+			if err != nil {
+				fmt.Println("FATAL: ", err.Error())
+			}
+		case r := <-recv:
+			err := p.processPacket(r)
+			if err != nil {
+				fmt.Println("FATAL: ", err.Error())
+			}
+		}
+		if p.Count > 0 && p.PacketsRecv >= p.Count { 
+			close(p.done)
+			wg.Wait()
+			return
+		}
+	}
+}
+```
+
+## timer引起的内存泄漏和CPU问题
+
+在高性能场景下，不应该使用time.After，而应该使用New.Timer并在不再使用该Timer后（无论该Timer是否被触发）调用Timer的Stop方法来及时释放资源。不然内存资源可能被延时释放。
+
+使用time.NewTicker时，在Ticker对象不再使用后（无论该Ticker是否被触发过），一定要调用Stop方法，否则会造成内存和cpu泄漏。
 
 
 
+After函数等待参数duration所指定的时间到达后才返回，返回的chan中Time的值为当前时间。After函数等价于time.NewTimer(d).C。
+
+
+
+## 高性能时间轮
+
+golang在1.9.x版本后优化了定时器，以前为一个四叉堆，现在是多个四叉堆，具体你能用到多少个堆，要看你的gomaxprocs配置大小了。go timer init里初始化了64个timerBucket，那么time会如何选择timerBucket? 是通过g.m.p.id % 64取摸拿到的timerBucket。
+
+```go
+func (t *timer) assignBucket() *timersBucket {
+    id := uint8(getg().m.p.ptr().id) % timersLen
+    t.tb = &timers[id].timersBucket
+    return t.tb
+}
+```
+
+golang标准库里实现的定时器都是高精度的，高精度带来了频发的读写操作heap和锁的竞争压力。
+
+时间轮的意义在于把精度放低，比如同一秒内的定时任务放凑在一起，数据结构改用map, 那么时间轮只需要o(1)的时间复杂度就可以把任务放进去，只需要一次加锁放锁就可以把同一个时间精度的任务都捞出来。
+
+https://github.com/rfyiamcool/go-timewheel
+
+```go
+// 初始化时间轮, 精度为1s，槽位360个
+tw, err := NewTimeWheel(1 * time.Second, 360)
+if err != nil {
+    panic(err)
+}
+
+// 启动时间轮
+tw.Start()
+
+// 关闭时间轮
+tw.Stop()
+
+// 添加任务
+task := tw.Add(5 * time.Second, func(){})
+
+// 删除任务
+tw.Remove(task)
+
+// 添加周期性任务
+task := tw.AddCron(5 * time.Second, func(){
+    ...
+})
+
+// 实现time.Sleep
+tw.Sleep(5 * time.Second)
+similar to time.After()
+
+// 实现After
+<- tw.After(5 * time.Second)
+similar to time.NewTimer
+
+// 实现NewTimer定时器
+timer :=tw.NewTimer(5 * time.Second)
+<- timer.C
+timer.Reset(1 * time.Second)
+timer.Stop()
+
+// 实现NewTicker定时器
+timer :=tw.NewTicker(5 * time.Second)
+<- timer.C
+timer.Stop()
+
+
+// 实现go time的AfterFunc
+runner :=tw.AfterFunc(5 * time.Second, func(){})
+<- runner.C
+runner.Stop()
+```
+
+如果性能还是达不到要求，可以封装多个时间轮到一个池子，类似go time标准库里timerprc的实现。
+
+时间轮的效率确实很高，在一个高频的推送服务里会有各种定时器的使用，时间轮可以减少cpu消耗。
 
 
 
@@ -481,7 +718,14 @@ https://juejin.im/post/6844903901418749960
 
 https://blog.haohtml.com/archives/19859
 
+https://juejin.im/post/6844904164577771533#heading-2
 
+[定时器未释放](https://www.mdeditor.tw/pl/235s) 
 
+[时间轮](http://xiaorui.cc/archives/6160) 
 
+[golang 定时任务方面time.Sleep和time.Tick的优劣对比](https://aimuke.github.io/go/2019/12/13/go-timer/) 
 
+[timer机制](https://aimuke.github.io/go/2019/12/12/go-timer-ticker/) 
+
+[linux下cron使用](https://www.cnblogs.com/mq0036/p/12930998.html) 

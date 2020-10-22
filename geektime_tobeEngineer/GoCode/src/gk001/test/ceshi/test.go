@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"log"
+	//"log"
 	"time"
-	"github.com/robfig/cron"
+	//"github.com/robfig/cron"
 )
 
 // people包含，people0012->true,peop3l4e->true,3p4e5ople->true,epeopl0->false
@@ -17,17 +17,15 @@ func main() {
 	tt := time.Now()
 	fmt.Println(tt.Sub(t1))
 
-	c := cron.New()
-
-	c.AddFunc("0 */1 * * * *", func() {
-		log.Println("every 1 seconds executing")
-		log.Println("add func")
-	})
-
-	go c.Start()
-	defer c.Stop()
-
-
+	//c := cron.New()
+	//
+	//c.AddFunc("0 */1 * * * *", func() {
+	//	log.Println("every 1 seconds executing")
+	//	log.Println("add func")
+	//})
+	//
+	//go c.Start()
+	//defer c.Stop()
 
 	//i := 0
 	//c1 := cron.New()
@@ -45,7 +43,55 @@ func main() {
 	//case <-time.After(time.Second * 10):
 	//	return
 	//}
-	select {
+	//select {
+	//}
+
+	//go tickerTest1()
+	//tickerTest2()
+
+	ticker1 := TickerTest()
+	time.Sleep(20 * time.Second)
+	ticker1.Stop()
+}
+
+func TickerTest() *time.Ticker {
+	ticker := time.NewTicker(5 * time.Second)
+	go func(ticker *time.Ticker) {
+		defer func() {
+			fmt.Println("defer Ticker1 stop")
+		}()
+		for range ticker.C {
+			fmt.Println("Ticker1······")
+		}
+		fmt.Println("Ticker1 stop")
+	}(ticker)
+
+	return ticker
+}
+
+func tickerTest1() {
+	ticker := *time.NewTicker(time.Second)
+	count := 0
+	go func() {
+		time.Sleep(3 * time.Second)
+		ticker.Stop()
+	}()
+	for range ticker.C {
+		count++
+		fmt.Println("tickerTest1：", count)
+	}
+}
+
+func tickerTest2() {
+	ticker := time.NewTicker(time.Second)
+	count := 0
+	go func() {
+		time.Sleep(3 * time.Second)
+		ticker.Stop()
+	}()
+	for range ticker.C {
+		count++
+		fmt.Println("tickerTest2：", count)
 	}
 }
 
@@ -97,4 +143,3 @@ type Test2Job struct {
 func (t Test2Job) Run() {
 	fmt.Println("testJob2...")
 }
-
