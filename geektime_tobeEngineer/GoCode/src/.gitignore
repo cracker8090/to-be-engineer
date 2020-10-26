@@ -8,6 +8,8 @@ sourcegraph.com
 *.dll
 *.so
 *.dylib
+.idea
+*.sum
 
 # Test binary, built with `go test -c`
 *.test

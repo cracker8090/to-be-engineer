@@ -1,4 +1,6 @@
+# 目录
 
+[toc]
 
 定时任务分类
 
@@ -11,8 +13,6 @@ golang中提供了2种定时器timer和ticker，分别是一次性定时器和�
 - ticker定时器表示每隔一段时间就执行一次，一般可执行多次。
 - timer定时器表示在一段时间后执行，默认情况下只执行一次，如果想再次执行的话，每次都需要调用 time.Reset()方法，此时效果类似ticker定时器。同时也可以调用stop()方法取消定时器
 - timer定时器比ticker定时器多一个Reset()方法，两者都有Stop()方法，表示停止定时器,底层都调用了stopTimer()函数。
-
-
 
 
 
@@ -232,7 +232,7 @@ func NewTimer(d time.Duration, f TimeCallbackFunc) GGTimer {
 
 使用time.NewTicker() 定时器时，需要使用Stop()方法进行资源释放，否则会产生内存泄漏，(Stop the ticker to release associated resources.)
 
-
+[回到目录](#目录) 
 
 # cron包
 
@@ -455,7 +455,7 @@ c.AddFunc("@daily", func() { fmt.Println("Every day") })
 inspect(c.Entries())
 ```
 
-
+[回到目录](#目录) 
 
 # 定时器问题
 
@@ -704,7 +704,7 @@ runner.Stop()
 
 时间轮的效率确实很高，在一个高频的推送服务里会有各种定时器的使用，时间轮可以减少cpu消耗。
 
-
+[回到目录](#目录) 
 
 
 
@@ -729,3 +729,7 @@ https://juejin.im/post/6844904164577771533#heading-2
 [timer机制](https://aimuke.github.io/go/2019/12/12/go-timer-ticker/) 
 
 [linux下cron使用](https://www.cnblogs.com/mq0036/p/12930998.html) 
+
+
+
+[回到目录](#目录) 
