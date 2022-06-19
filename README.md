@@ -6,13 +6,13 @@ Another brother repository: [personal_books](https://github.com/cracker8090/pers
 - Linux_C
   - [Unix环境高级编程note](./linux_C/Unix环境高级编程note.md) 
 - 计算机网络
-  - todo
+  - [加密算法和https](./计算机网络/加密算法和https.md) 
 - 数据库
-  - todo
+  - [mysql](./数据库/数据库-mysql.md) 
 - 算法
   - todo
 - 中间件
-  - todo
+  - [缓存-redis](./中间件/缓存-redis.md) 
 - MachineLearning
   - todo
 - network_security
@@ -22,7 +22,7 @@ Another brother repository: [personal_books](https://github.com/cracker8090/pers
 - golang
   - todo
 - rust
-  - todo
+  - [rust-notes](./rust/rust-notes.md) 
 - python
   - todo
 - 经济
