@@ -1,0 +1,14 @@
+time="2020-10-27T00:15:44+08:00" level=info msg=abc
+time="2020-10-27T00:15:44+08:00" level=info msg="[          abc]"
+time="2020-10-27T00:15:44+08:00" level=info msg="A walrus appears" animal=walrus
+{"level":"info","msg":"abc","time":"2020-10-27T00:16:06+08:00"}
+{"level":"info","msg":"[          abc]","time":"2020-10-27T00:16:06+08:00"}
+{"animal":"walrus","level":"info","msg":"A walrus appears","time":"2020-10-27T00:16:06+08:00"}
+{"level":"info","msg":"abc","time":"2020-10-27T00:18:44+08:00"}
+{"level":"info","msg":"[          abc]","time":"2020-10-27T00:18:44+08:00"}
+{"animal":"walrus","level":"info","msg":"A walrus appears","time":"2020-10-27T00:18:44+08:00"}
+{"event":"event","key":100,"level":"fatal","msg":"Failed to send event","time":"2020-10-27T00:18:44+08:00","topic":"topic"}
+time="2020-10-27T00:19:43+08:00" level=info msg=abc
+time="2020-10-27T00:19:43+08:00" level=info msg="[          abc]"
+time="2020-10-27T00:19:43+08:00" level=info msg="A walrus appears" animal=walrus
+time="2020-10-27T00:19:43+08:00" level=fatal msg="Failed to send event" event=event key=100 topic=topic
