@@ -25,6 +25,8 @@ Another brother repository: [personal_books](https://github.com/cracker8090/pers
   - [rust-notes](./rust/rust-notes.md) 
 - python
   - todo
+- java
+  - todo
 - 经济
   - todo
 - blockchain
