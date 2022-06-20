@@ -177,11 +177,45 @@ priority 参数包含 facility 和 level 的组合，如果参数中没有指定
 
 # 线程
 
+ pthread_create类似于fork，pthread_join则类似于waitpid。
+
+pthread_self类似于getpid。
+
+线程终止：pthread_exit、return、某线程exit或_exit
+
 ## 线程介绍
 
 线程包含了表示进程内执行环境的必须信息，其中包含进程中表示线程的线程ID，一组寄存器值，栈，调度优先级和策略。信号屏蔽字，errno值以及线程私有数据。
 
 **进程的所有信息对该进程的所有线程都是共享的，包括可执行的程序文本，程序的全局内存和堆内存，栈以及文件描述符。** 
+
+一个进程内的所有线程不光共享全局变量，以下信息也是它们所共享的：
+
+进程指令；
+
+大多数数据；
+
+打开的文件（例如描述符）；
+
+信号处理程序和信号处置；
+
+当前工作目录；
+
+用户ID和组ID。
+
+但是下列信息却是特定于每个线程的：
+
+线程ID；
+
+寄存器集合，包括程序计数器和栈指针；
+
+栈（用于存放局部变量和返回地址）；
+
+errno；
+
+信号掩码；
+
+优先级。
 
 - 线程标识
 
@@ -348,6 +382,8 @@ int main()
 
 ### 读写锁rwlock
 
+读写锁的数据类型为pthread_rwlock_t。如果这个类型的某个变量是静态分配的，那么可通过给它赋常值PTHREAD_RWLOCK_INITIALIZER来初始化它。
+
 读写锁有 3 中状态：不加锁、读模式加锁和写模式加锁。一次只有一个线程可以占有写模式的读写锁，但是多个线程可以同时占有读模式的读写锁。
 
 读写锁适合对数据结构读的次数远大于写的情况。
@@ -372,6 +408,8 @@ int pthread_rwlock_timedwrlock(pthread_rwlock_t *restrict rwlock,const struct ti
 ```
 
 ### 条件变量cond
+
+用两个常值PTHREAD_MUTEX_INITIALIZER和PTHREAD_COND_INITIALIZER来初始化它们
 
 当线程等待的条件变量被满足后，该线程就会被唤醒。条件变量需要和互斥量配合使用，条件本身是由互斥量保护的。
 
@@ -928,6 +966,8 @@ struct ipc_perm{
     uid_t cuid;     /* 创建者的有效用户ID */
     gid_t cgid;     /* 创建者的有效组ID */
     mode_t mode;    /* 访问模式 */
+	ulong_t　seq;　　 /* slot usage sequence number */
+	key_t　　 key;　　 /* IPC key */
     ...
 };
 ```
@@ -1069,7 +1109,7 @@ cmd 参数指定队列需要执行的操作：
 int semget(key_t key, int nsems, int flag);
 // nsems 用于指定该集合中的信号量数，如果是创建新集合，则需要指定数量；如果是引用现有的集合，则将其设置为 0
 
-// 包含多种信号量操作
+// 包含多种信号量操作 对一个信号量执行各种控制操作
 int semctl(int semid, int semnum, int cmd, ... /* union semun arg */ );
 // 第 4 个参数 arg 由 cmd 的实际值来决定是否使用，注意该参数并不是指针。如果需要使用该参数，其类型需要自己定义
 union semun {
@@ -1083,6 +1123,7 @@ union semun {
 
 // 自动执行信号量集合上的操作数组
 int semop(int semid, struct sembuf semoparray[], size_t nops);
+// 使用semget打开一个信号量集后，对其中一个或多个信号量的操作就使用semop函数来执行
 // nops 是数组 semoparray 的元素个数，semoparray 是一个信号量操作数组，其中存放每个信号量的操作，其结构如下：
 struct sembuf {
   unsigned short sem_num; /* member # in set (0, 1, ..., nsems-1) */
@@ -1111,6 +1152,16 @@ sem_op 可以指定如下 3 种值：
 相比与通过文件映射的方式来共享存储区的方式，XSI 共享存储没有相关的文件，它共享的是内存的匿名段。
 
 > mmap就是共享存储的一种形式，但是XSI共享存储与其区别在于，XSI共享存储没有相关文件。XSI共享存储段是内存的匿名段
+
+Posix共享内存区调用shm_open后调用mmap的是，先调用shmget，再调用shmat。
+
+shmget：获取一个标识符。
+
+shmat：把一个共享内存区附接到调用进程的地址空间。
+
+以一个IPC_STAT命令调用shmctl：获取一个已存在共享内存区的大小。
+
+以一个IPC_RMID命令调用shmctl：删除一个共享内存区对象。
 
 ```c
 #include <sys/shm.h>
