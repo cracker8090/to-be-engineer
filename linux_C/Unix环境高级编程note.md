@@ -1295,3 +1295,15 @@ int protocol : 用于消歧义，决定网络协议，通常是0
 参考：[Unix高级编程笔记](https://github.com/arkingc/note/blob/master/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/UNIX%E7%8E%AF%E5%A2%83%E9%AB%98%E7%BA%A7%E7%BC%96%E7%A8%8B.md) 
 
 书籍：[《UNIX环境高级编程(第三版)》](https://awesome-programming-books.github.io/linux/UNIX环境高级编程(第三版).pdf) 
+
+# Posix IPC-System V IPC
+
+[两者比较](Unix网络编程II-进程间通信#介绍) 
+
+[Posix消息队列](Unix网络编程II-进程间通信#Posix消息队列) 
+
+[Poxis共享内存](Unix网络编程II-进程间通信#Poxis共享内存) 
+
+# 远程过程调用
+
+[远程过程调用](Unix网络编程II-进程间通信#远程过程调用) 
