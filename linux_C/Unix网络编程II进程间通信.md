@@ -1,3 +1,19 @@
+- System V介绍
+  - [Posix IPC](#Posix-IPC)
+  - [System V IPC](#System-V-IPC)
+- 消息传递
+  - [管道和FIFO](#管道和FIFO)
+  - [Posix消息队列](#Posix消息队列)
+  - [System V消息队列](#System-V消息队列)
+- 同步
+  - [同上文](Unix环境高级编程note.md#线程同步)
+- 共享内存
+  - [Posix共享内存](#Posix共享内存) 
+  - [System V同上文](Unix环境高级编程note.md#共享存储)
+- 远程过程调用
+  - [门](#门)
+  - [SUN RPC](#SUN-RPC)
+
 # 介绍
 
 管道，既可在程序中使用，也可从shell中使用。管道的问题在于它们只能在具有共同祖先（指父子进程关系）的进程间使用，不过该问题已随有名管道（named pipe）即FIFO的引入而解决了。
