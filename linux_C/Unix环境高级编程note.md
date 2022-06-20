@@ -1298,12 +1298,12 @@ int protocol : 用于消歧义，决定网络协议，通常是0
 
 # Posix IPC-System V IPC
 
-[两者比较](Unix网络编程II进程间通信#介绍) 
+[两者比较](Unix网络编程II进程间通信.md#介绍) 
 
-[Posix消息队列](Unix网络编程II进程间通信#Posix消息队列) 
+[Posix消息队列](Unix网络编程II进程间通信.md#Posix消息队列) 
 
-[Poxis共享内存](Unix网络编程II进程间通信#Poxis共享内存) 
+[Poxis共享内存](Unix网络编程II进程间通信.md#Poxis共享内存) 
 
 # 远程过程调用
 
-[远程过程调用](Unix网络编程II进程间通信#远程过程调用) 
+[远程过程调用](Unix网络编程II进程间通信.md#远程过程调用) 
