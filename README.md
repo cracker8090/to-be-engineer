@@ -35,3 +35,8 @@ Another brother repository: [personal_books](https://github.com/cracker8090/pers
 
 
 推荐：[左耳朵耗子专栏之程序员练级](https://time.geekbang.org/column/article/8136) coolshell博客
+
+- 推荐的github项目
+  - [怎样进行大型系统设计](https://github.com/donnemartin/system-design-primer) 
+
+
